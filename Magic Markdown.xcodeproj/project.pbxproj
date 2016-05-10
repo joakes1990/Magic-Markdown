@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D0DEA7291CE1786400963AF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEA7281CE1786400963AF6 /* AppDelegate.swift */; };
+		D0DEA72B1CE1786400963AF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEA72A1CE1786400963AF6 /* ViewController.swift */; };
+		D0DEA72E1CE1786400963AF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DEA72C1CE1786400963AF6 /* Main.storyboard */; };
+		D0DEA7301CE1786400963AF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DEA72F1CE1786400963AF6 /* Assets.xcassets */; };
+		D0DEA7331CE1786400963AF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DEA7311CE1786400963AF6 /* LaunchScreen.storyboard */; };
+		D0DEA73E1CE1786500963AF6 /* Magic_MarkdownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEA73D1CE1786500963AF6 /* Magic_MarkdownTests.swift */; };
+		D0DEA7491CE1786500963AF6 /* Magic_MarkdownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEA7481CE1786500963AF6 /* Magic_MarkdownUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D0DEA73A1CE1786500963AF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0DEA71D1CE1786400963AF6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0DEA7241CE1786400963AF6;
+			remoteInfo = "Magic Markdown";
+		};
+		D0DEA7451CE1786500963AF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0DEA71D1CE1786400963AF6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0DEA7241CE1786400963AF6;
+			remoteInfo = "Magic Markdown";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D0DEA7251CE1786400963AF6 /* Magic Markdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Markdown.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0DEA7281CE1786400963AF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D0DEA72A1CE1786400963AF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D0DEA72D1CE1786400963AF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D0DEA72F1CE1786400963AF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D0DEA7321CE1786400963AF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D0DEA7341CE1786400963AF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0DEA7391CE1786500963AF6 /* Magic MarkdownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Magic MarkdownTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0DEA73D1CE1786500963AF6 /* Magic_MarkdownTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magic_MarkdownTests.swift; sourceTree = "<group>"; };
+		D0DEA73F1CE1786500963AF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0DEA7441CE1786500963AF6 /* Magic MarkdownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Magic MarkdownUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0DEA7481CE1786500963AF6 /* Magic_MarkdownUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magic_MarkdownUITests.swift; sourceTree = "<group>"; };
+		D0DEA74A1CE1786500963AF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0DEA7221CE1786400963AF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0DEA7361CE1786500963AF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0DEA7411CE1786500963AF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0DEA71C1CE1786400963AF6 = {
+			isa = PBXGroup;
+			children = (
+				D0DEA7271CE1786400963AF6 /* Magic Markdown */,
+				D0DEA73C1CE1786500963AF6 /* Magic MarkdownTests */,
+				D0DEA7471CE1786500963AF6 /* Magic MarkdownUITests */,
+				D0DEA7261CE1786400963AF6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0DEA7261CE1786400963AF6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0DEA7251CE1786400963AF6 /* Magic Markdown.app */,
+				D0DEA7391CE1786500963AF6 /* Magic MarkdownTests.xctest */,
+				D0DEA7441CE1786500963AF6 /* Magic MarkdownUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0DEA7271CE1786400963AF6 /* Magic Markdown */ = {
+			isa = PBXGroup;
+			children = (
+				D0DEA7281CE1786400963AF6 /* AppDelegate.swift */,
+				D0DEA72A1CE1786400963AF6 /* ViewController.swift */,
+				D0DEA72C1CE1786400963AF6 /* Main.storyboard */,
+				D0DEA72F1CE1786400963AF6 /* Assets.xcassets */,
+				D0DEA7311CE1786400963AF6 /* LaunchScreen.storyboard */,
+				D0DEA7341CE1786400963AF6 /* Info.plist */,
+			);
+			path = "Magic Markdown";
+			sourceTree = "<group>";
+		};
+		D0DEA73C1CE1786500963AF6 /* Magic MarkdownTests */ = {
+			isa = PBXGroup;
+			children = (
+				D0DEA73D1CE1786500963AF6 /* Magic_MarkdownTests.swift */,
+				D0DEA73F1CE1786500963AF6 /* Info.plist */,
+			);
+			path = "Magic MarkdownTests";
+			sourceTree = "<group>";
+		};
+		D0DEA7471CE1786500963AF6 /* Magic MarkdownUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D0DEA7481CE1786500963AF6 /* Magic_MarkdownUITests.swift */,
+				D0DEA74A1CE1786500963AF6 /* Info.plist */,
+			);
+			path = "Magic MarkdownUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D0DEA7241CE1786400963AF6 /* Magic Markdown */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0DEA74D1CE1786500963AF6 /* Build configuration list for PBXNativeTarget "Magic Markdown" */;
+			buildPhases = (
+				D0DEA7211CE1786400963AF6 /* Sources */,
+				D0DEA7221CE1786400963AF6 /* Frameworks */,
+				D0DEA7231CE1786400963AF6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Magic Markdown";
+			productName = "Magic Markdown";
+			productReference = D0DEA7251CE1786400963AF6 /* Magic Markdown.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D0DEA7381CE1786500963AF6 /* Magic MarkdownTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0DEA7501CE1786500963AF6 /* Build configuration list for PBXNativeTarget "Magic MarkdownTests" */;
+			buildPhases = (
+				D0DEA7351CE1786500963AF6 /* Sources */,
+				D0DEA7361CE1786500963AF6 /* Frameworks */,
+				D0DEA7371CE1786500963AF6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0DEA73B1CE1786500963AF6 /* PBXTargetDependency */,
+			);
+			name = "Magic MarkdownTests";
+			productName = "Magic MarkdownTests";
+			productReference = D0DEA7391CE1786500963AF6 /* Magic MarkdownTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D0DEA7431CE1786500963AF6 /* Magic MarkdownUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0DEA7531CE1786500963AF6 /* Build configuration list for PBXNativeTarget "Magic MarkdownUITests" */;
+			buildPhases = (
+				D0DEA7401CE1786500963AF6 /* Sources */,
+				D0DEA7411CE1786500963AF6 /* Frameworks */,
+				D0DEA7421CE1786500963AF6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0DEA7461CE1786500963AF6 /* PBXTargetDependency */,
+			);
+			name = "Magic MarkdownUITests";
+			productName = "Magic MarkdownUITests";
+			productReference = D0DEA7441CE1786500963AF6 /* Magic MarkdownUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0DEA71D1CE1786400963AF6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Oklasoft LLC";
+				TargetAttributes = {
+					D0DEA7241CE1786400963AF6 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					D0DEA7381CE1786500963AF6 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = D0DEA7241CE1786400963AF6;
+					};
+					D0DEA7431CE1786500963AF6 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = D0DEA7241CE1786400963AF6;
+					};
+				};
+			};
+			buildConfigurationList = D0DEA7201CE1786400963AF6 /* Build configuration list for PBXProject "Magic Markdown" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D0DEA71C1CE1786400963AF6;
+			productRefGroup = D0DEA7261CE1786400963AF6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0DEA7241CE1786400963AF6 /* Magic Markdown */,
+				D0DEA7381CE1786500963AF6 /* Magic MarkdownTests */,
+				D0DEA7431CE1786500963AF6 /* Magic MarkdownUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D0DEA7231CE1786400963AF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0DEA7331CE1786400963AF6 /* LaunchScreen.storyboard in Resources */,
+				D0DEA7301CE1786400963AF6 /* Assets.xcassets in Resources */,
+				D0DEA72E1CE1786400963AF6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0DEA7371CE1786500963AF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0DEA7421CE1786500963AF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0DEA7211CE1786400963AF6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0DEA72B1CE1786400963AF6 /* ViewController.swift in Sources */,
+				D0DEA7291CE1786400963AF6 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0DEA7351CE1786500963AF6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0DEA73E1CE1786500963AF6 /* Magic_MarkdownTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0DEA7401CE1786500963AF6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0DEA7491CE1786500963AF6 /* Magic_MarkdownUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D0DEA73B1CE1786500963AF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0DEA7241CE1786400963AF6 /* Magic Markdown */;
+			targetProxy = D0DEA73A1CE1786500963AF6 /* PBXContainerItemProxy */;
+		};
+		D0DEA7461CE1786500963AF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0DEA7241CE1786400963AF6 /* Magic Markdown */;
+			targetProxy = D0DEA7451CE1786500963AF6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D0DEA72C1CE1786400963AF6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0DEA72D1CE1786400963AF6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D0DEA7311CE1786400963AF6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0DEA7321CE1786400963AF6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D0DEA74B1CE1786500963AF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D0DEA74C1CE1786500963AF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D0DEA74E1CE1786500963AF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Magic Markdown/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oklasoft.Magic-Markdown";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D0DEA74F1CE1786500963AF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Magic Markdown/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oklasoft.Magic-Markdown";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D0DEA7511CE1786500963AF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Magic MarkdownTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oklasoft.Magic-MarkdownTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Magic Markdown.app/Magic Markdown";
+			};
+			name = Debug;
+		};
+		D0DEA7521CE1786500963AF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Magic MarkdownTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oklasoft.Magic-MarkdownTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Magic Markdown.app/Magic Markdown";
+			};
+			name = Release;
+		};
+		D0DEA7541CE1786500963AF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Magic MarkdownUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oklasoft.Magic-MarkdownUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Magic Markdown";
+			};
+			name = Debug;
+		};
+		D0DEA7551CE1786500963AF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Magic MarkdownUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oklasoft.Magic-MarkdownUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Magic Markdown";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0DEA7201CE1786400963AF6 /* Build configuration list for PBXProject "Magic Markdown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0DEA74B1CE1786500963AF6 /* Debug */,
+				D0DEA74C1CE1786500963AF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0DEA74D1CE1786500963AF6 /* Build configuration list for PBXNativeTarget "Magic Markdown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0DEA74E1CE1786500963AF6 /* Debug */,
+				D0DEA74F1CE1786500963AF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D0DEA7501CE1786500963AF6 /* Build configuration list for PBXNativeTarget "Magic MarkdownTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0DEA7511CE1786500963AF6 /* Debug */,
+				D0DEA7521CE1786500963AF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D0DEA7531CE1786500963AF6 /* Build configuration list for PBXNativeTarget "Magic MarkdownUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0DEA7541CE1786500963AF6 /* Debug */,
+				D0DEA7551CE1786500963AF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D0DEA71D1CE1786400963AF6 /* Project object */;
+}
