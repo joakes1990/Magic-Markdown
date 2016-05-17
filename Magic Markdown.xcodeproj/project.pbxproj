@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		239C4A97662E647A6EE1868C /* Pods_Magic_MarkdownUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A84E890BDBA24ECB27D7D /* Pods_Magic_MarkdownUITests.framework */; };
+		9BA298EA96E4A3C9BB48BA12 /* Pods_Magic_MarkdownTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE0D83239A25EEF6328213D /* Pods_Magic_MarkdownTests.framework */; };
+		D0DD7EA61CEAAEEC00058359 /* ConmposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DD7EA51CEAAEEC00058359 /* ConmposeViewController.swift */; };
 		D0DEA7291CE1786400963AF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEA7281CE1786400963AF6 /* AppDelegate.swift */; };
-		D0DEA72B1CE1786400963AF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEA72A1CE1786400963AF6 /* ViewController.swift */; };
 		D0DEA72E1CE1786400963AF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DEA72C1CE1786400963AF6 /* Main.storyboard */; };
 		D0DEA7301CE1786400963AF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DEA72F1CE1786400963AF6 /* Assets.xcassets */; };
 		D0DEA7331CE1786400963AF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DEA7311CE1786400963AF6 /* LaunchScreen.storyboard */; };
 		D0DEA73E1CE1786500963AF6 /* Magic_MarkdownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEA73D1CE1786500963AF6 /* Magic_MarkdownTests.swift */; };
 		D0DEA7491CE1786500963AF6 /* Magic_MarkdownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEA7481CE1786500963AF6 /* Magic_MarkdownUITests.swift */; };
+		D8AF49DE302689EA6B533E30 /* Pods_Magic_Markdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533B035AE62790B335D00443 /* Pods_Magic_Markdown.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +37,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08E96CCED16B4BCEB2322F84 /* Pods-Magic Markdown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic Markdown.release.xcconfig"; path = "Pods/Target Support Files/Pods-Magic Markdown/Pods-Magic Markdown.release.xcconfig"; sourceTree = "<group>"; };
+		533B035AE62790B335D00443 /* Pods_Magic_Markdown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Magic_Markdown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		994465334FC13359DF40CC45 /* Pods-Magic Markdown.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic Markdown.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Magic Markdown/Pods-Magic Markdown.debug.xcconfig"; sourceTree = "<group>"; };
+		9BE0D83239A25EEF6328213D /* Pods_Magic_MarkdownTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Magic_MarkdownTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A28A79C1111955217030AA94 /* Pods-Magic MarkdownTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic MarkdownTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Magic MarkdownTests/Pods-Magic MarkdownTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AB430533FEF9E6CA272692F7 /* Pods-Magic MarkdownTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic MarkdownTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Magic MarkdownTests/Pods-Magic MarkdownTests.release.xcconfig"; sourceTree = "<group>"; };
+		BA2611BFE1341A03DDB5C8DB /* Pods-Magic MarkdownUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic MarkdownUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Magic MarkdownUITests/Pods-Magic MarkdownUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D0DD7EA51CEAAEEC00058359 /* ConmposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConmposeViewController.swift; path = ../ConmposeViewController.swift; sourceTree = "<group>"; };
 		D0DEA7251CE1786400963AF6 /* Magic Markdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Markdown.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DEA7281CE1786400963AF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D0DEA72A1CE1786400963AF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D0DEA72D1CE1786400963AF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0DEA72F1CE1786400963AF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0DEA7321CE1786400963AF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +57,8 @@
 		D0DEA7441CE1786500963AF6 /* Magic MarkdownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Magic MarkdownUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DEA7481CE1786500963AF6 /* Magic_MarkdownUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magic_MarkdownUITests.swift; sourceTree = "<group>"; };
 		D0DEA74A1CE1786500963AF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCFB7DD905D71981AE756E17 /* Pods-Magic MarkdownUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic MarkdownUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Magic MarkdownUITests/Pods-Magic MarkdownUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E14A84E890BDBA24ECB27D7D /* Pods_Magic_MarkdownUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Magic_MarkdownUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8AF49DE302689EA6B533E30 /* Pods_Magic_Markdown.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BA298EA96E4A3C9BB48BA12 /* Pods_Magic_MarkdownTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +82,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				239C4A97662E647A6EE1868C /* Pods_Magic_MarkdownUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90EFAAEEE91D9026F2B672EB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				994465334FC13359DF40CC45 /* Pods-Magic Markdown.debug.xcconfig */,
+				08E96CCED16B4BCEB2322F84 /* Pods-Magic Markdown.release.xcconfig */,
+				A28A79C1111955217030AA94 /* Pods-Magic MarkdownTests.debug.xcconfig */,
+				AB430533FEF9E6CA272692F7 /* Pods-Magic MarkdownTests.release.xcconfig */,
+				BA2611BFE1341A03DDB5C8DB /* Pods-Magic MarkdownUITests.debug.xcconfig */,
+				DCFB7DD905D71981AE756E17 /* Pods-Magic MarkdownUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D0DEA71C1CE1786400963AF6 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +109,8 @@
 				D0DEA73C1CE1786500963AF6 /* Magic MarkdownTests */,
 				D0DEA7471CE1786500963AF6 /* Magic MarkdownUITests */,
 				D0DEA7261CE1786400963AF6 /* Products */,
+				90EFAAEEE91D9026F2B672EB /* Pods */,
+				E7ED53DA5D56C71714566C2C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,8 +127,8 @@
 		D0DEA7271CE1786400963AF6 /* Magic Markdown */ = {
 			isa = PBXGroup;
 			children = (
+				D0DD7EA51CEAAEEC00058359 /* ConmposeViewController.swift */,
 				D0DEA7281CE1786400963AF6 /* AppDelegate.swift */,
-				D0DEA72A1CE1786400963AF6 /* ViewController.swift */,
 				D0DEA72C1CE1786400963AF6 /* Main.storyboard */,
 				D0DEA72F1CE1786400963AF6 /* Assets.xcassets */,
 				D0DEA7311CE1786400963AF6 /* LaunchScreen.storyboard */,
@@ -125,6 +155,16 @@
 			path = "Magic MarkdownUITests";
 			sourceTree = "<group>";
 		};
+		E7ED53DA5D56C71714566C2C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				533B035AE62790B335D00443 /* Pods_Magic_Markdown.framework */,
+				9BE0D83239A25EEF6328213D /* Pods_Magic_MarkdownTests.framework */,
+				E14A84E890BDBA24ECB27D7D /* Pods_Magic_MarkdownUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +172,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0DEA74D1CE1786500963AF6 /* Build configuration list for PBXNativeTarget "Magic Markdown" */;
 			buildPhases = (
+				30FBD4499BAF22CF3FBB53F4 /* 📦 Check Pods Manifest.lock */,
 				D0DEA7211CE1786400963AF6 /* Sources */,
 				D0DEA7221CE1786400963AF6 /* Frameworks */,
 				D0DEA7231CE1786400963AF6 /* Resources */,
+				B6FC2F3D634B9F96B0ADCFC1 /* 📦 Embed Pods Frameworks */,
+				3323C7029F3AC158726F65F2 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +192,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0DEA7501CE1786500963AF6 /* Build configuration list for PBXNativeTarget "Magic MarkdownTests" */;
 			buildPhases = (
+				43FD389DC0632EA490239607 /* 📦 Check Pods Manifest.lock */,
 				D0DEA7351CE1786500963AF6 /* Sources */,
 				D0DEA7361CE1786500963AF6 /* Frameworks */,
 				D0DEA7371CE1786500963AF6 /* Resources */,
+				FC6FC5919B3E839505627BF2 /* 📦 Embed Pods Frameworks */,
+				270AE314BBC9E88F2F198041 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +213,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0DEA7531CE1786500963AF6 /* Build configuration list for PBXNativeTarget "Magic MarkdownUITests" */;
 			buildPhases = (
+				1BAA1055FE79A8A6334BB7A8 /* 📦 Check Pods Manifest.lock */,
 				D0DEA7401CE1786500963AF6 /* Sources */,
 				D0DEA7411CE1786500963AF6 /* Frameworks */,
 				D0DEA7421CE1786500963AF6 /* Resources */,
+				C94FADED5DF6BA69CA0428B8 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,12 +299,135 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1BAA1055FE79A8A6334BB7A8 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		270AE314BBC9E88F2F198041 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Magic MarkdownTests/Pods-Magic MarkdownTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		30FBD4499BAF22CF3FBB53F4 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3323C7029F3AC158726F65F2 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Magic Markdown/Pods-Magic Markdown-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43FD389DC0632EA490239607 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B6FC2F3D634B9F96B0ADCFC1 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Magic Markdown/Pods-Magic Markdown-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C94FADED5DF6BA69CA0428B8 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Magic MarkdownUITests/Pods-Magic MarkdownUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC6FC5919B3E839505627BF2 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Magic MarkdownTests/Pods-Magic MarkdownTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D0DEA7211CE1786400963AF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0DEA72B1CE1786400963AF6 /* ViewController.swift in Sources */,
+				D0DD7EA61CEAAEEC00058359 /* ConmposeViewController.swift in Sources */,
 				D0DEA7291CE1786400963AF6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,28 +570,33 @@
 		};
 		D0DEA74E1CE1786500963AF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 994465334FC13359DF40CC45 /* Pods-Magic Markdown.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Magic Markdown/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oklasoft.Magic-Markdown";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		D0DEA74F1CE1786500963AF6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08E96CCED16B4BCEB2322F84 /* Pods-Magic Markdown.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Magic Markdown/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oklasoft.Magic-Markdown";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		D0DEA7511CE1786500963AF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A28A79C1111955217030AA94 /* Pods-Magic MarkdownTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Magic MarkdownTests/Info.plist";
@@ -433,6 +609,7 @@
 		};
 		D0DEA7521CE1786500963AF6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB430533FEF9E6CA272692F7 /* Pods-Magic MarkdownTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Magic MarkdownTests/Info.plist";
@@ -445,6 +622,7 @@
 		};
 		D0DEA7541CE1786500963AF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA2611BFE1341A03DDB5C8DB /* Pods-Magic MarkdownUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Magic MarkdownUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -456,6 +634,7 @@
 		};
 		D0DEA7551CE1786500963AF6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCFB7DD905D71981AE756E17 /* Pods-Magic MarkdownUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Magic MarkdownUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -484,6 +663,7 @@
 				D0DEA74F1CE1786500963AF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0DEA7501CE1786500963AF6 /* Build configuration list for PBXNativeTarget "Magic MarkdownTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +672,7 @@
 				D0DEA7521CE1786500963AF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0DEA7531CE1786500963AF6 /* Build configuration list for PBXNativeTarget "Magic MarkdownUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +681,7 @@
 				D0DEA7551CE1786500963AF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
