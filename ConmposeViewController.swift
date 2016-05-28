@@ -13,9 +13,14 @@ class ConmposeViewController: UIViewController {
 
     @IBOutlet weak var composeView: OKSGutteredCodeView!
     @IBOutlet weak var previewWebView: UIWebView!
+    @IBOutlet weak var previewWidth: NSLayoutConstraint!
+    var previewVisable: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.previewWebView.loadRequest(NSURLRequest(URL: NSURL(string: "https://google.com")!))
+        //Keyboard toolbar set up
         let toolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 100, 70))
         let quoteButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "quote3x"), style: .Plain, target: nil, action: nil)
         let linkButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Link3x"), style: .Plain, target: nil, action: nil)
@@ -34,6 +39,22 @@ class ConmposeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func showPreview(sender: AnyObject) {
+        if self.previewVisable {
+            self.previewVisable = false
+            self.previewWidth.constant = 1
+            UIView.animateWithDuration(0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            self.previewVisable = true
+            self.previewWidth.constant = self.view.bounds.width / 2
+            UIView.animateWithDuration(0.5, animations: { 
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+
 
     /*
     // MARK: - Navigation

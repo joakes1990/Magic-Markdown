@@ -241,6 +241,7 @@
 				TargetAttributes = {
 					D0DEA7241CE1786400963AF6 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 26VT895967;
 					};
 					D0DEA7381CE1786500963AF6 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -573,10 +574,13 @@
 			baseConfigurationReference = 994465334FC13359DF40CC45 /* Pods-Magic Markdown.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Magic Markdown/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oklasoft.Magic-Markdown";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -586,10 +590,13 @@
 			baseConfigurationReference = 08E96CCED16B4BCEB2322F84 /* Pods-Magic Markdown.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Magic Markdown/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oklasoft.Magic-Markdown";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
