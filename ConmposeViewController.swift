@@ -55,6 +55,12 @@ class ConmposeViewController: UIViewController {
         }
     }
 
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        if self.previewVisable {
+            self.previewWidth.constant = self.view.bounds.height / 2
+            self.view.layoutIfNeeded()
+        }
+    }
 
     /*
     // MARK: - Navigation
