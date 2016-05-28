@@ -48,7 +48,7 @@ class ConmposeViewController: UIViewController {
             })
         } else {
             self.previewVisable = true
-            self.previewWidth.constant = self.view.bounds.width / 2
+            self.previewWidth.constant = self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact ? self.view.bounds.width - 1 : self.view.bounds.width / 2
             UIView.animateWithDuration(0.5, animations: { 
                 self.view.layoutIfNeeded()
             })
@@ -57,19 +57,13 @@ class ConmposeViewController: UIViewController {
 
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         if self.previewVisable {
-            self.previewWidth.constant = self.view.bounds.height / 2
-            self.view.layoutIfNeeded()
+            self.performSelector(#selector(rotatePreview), withObject: nil, afterDelay: 0.25)
+            
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func rotatePreview() {
+        self.previewWidth.constant = self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact ? self.view.bounds.width : self.view.bounds.width / 2
     }
-    */
 
 }
