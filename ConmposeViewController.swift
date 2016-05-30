@@ -9,7 +9,8 @@
 import UIKit
 import OKSGutteredCodeView
 
-class ConmposeViewController: UIViewController {
+
+class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDelegate {
 
     @IBOutlet weak var composeView: OKSGutteredCodeView!
     @IBOutlet weak var previewWebView: UIWebView!
@@ -19,13 +20,14 @@ class ConmposeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.previewWebView.loadRequest(NSURLRequest(URL: NSURL(string: "https://google.com")!))
+        self.composeView.delegate = self
         //Keyboard toolbar set up
         let toolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 100, 70))
-        let quoteButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "quote3x"), style: .Plain, target: nil, action: nil)
-        let linkButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Link3x"), style: .Plain, target: nil, action: nil)
-        let imageButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Image3x"), style: .Plain, target: nil, action: nil)
-        let codeButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Code3x"), style: .Plain, target: nil, action: nil)
+        
+        let quoteButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "quote3x"), style: .Plain, target: self, action: #selector(addQuote))
+        let linkButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Link3x"), style: .Plain, target: self, action: #selector(addLink))
+        let imageButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Image3x"), style: .Plain, target: self, action: #selector(addImage))
+        let codeButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Code3x"), style: .Plain, target: self, action: #selector(addCodeBlock))
         let flexSpace: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         let fixedSpace: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
         fixedSpace.width = 40
@@ -64,6 +66,92 @@ class ConmposeViewController: UIViewController {
 
     func rotatePreview() {
         self.previewWidth.constant = self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact ? self.view.bounds.width : self.view.bounds.width / 2
-    }
 
+    }
+    
+//MARK: insertion methods
+    
+    func addQuote() {
+        self.composeView.insertTextAtCurser(">")
+    }
+    
+    func addLink() {
+        let alertView: UIAlertController = UIAlertController(title: "New Link", message: nil, preferredStyle: .Alert)
+        
+        alertView.addTextFieldWithConfigurationHandler { (textfield) in
+            textfield.placeholder = "Alt Text"
+        }
+        alertView.addTextFieldWithConfigurationHandler { (textfield) in
+            textfield.placeholder = "Link URL"
+        }
+        
+        let altTextField = alertView.textFields![0] as UITextField
+        let LinkTextField = alertView.textFields![1] as UITextField
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
+        
+        let insertAction = UIAlertAction(title: "Insert", style: .Default) { (action) in
+            if LinkTextField.text! != "" {
+                self.composeView.insertTextAtCurser("[\(altTextField.text! != "" ? altTextField.text! : "Click here")](\(LinkTextField.text!))")
+            }
+        }
+        alertView.addAction(cancelAction)
+        alertView.addAction(insertAction)
+        
+        self.presentViewController(alertView, animated: true) { 
+            
+        }
+    }
+    
+    func addImage() {
+        let alertView: UIAlertController = UIAlertController(title: "New Image", message: nil, preferredStyle: .Alert)
+        
+        alertView.addTextFieldWithConfigurationHandler { (textfield) in
+            textfield.placeholder = "Alt Text"
+        }
+        alertView.addTextFieldWithConfigurationHandler { (textfield) in
+            textfield.placeholder = "Image URL"
+        }
+        
+        let altTextField = alertView.textFields![0] as UITextField
+        let LinkTextField = alertView.textFields![1] as UITextField
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
+        
+        let insertAction = UIAlertAction(title: "Insert", style: .Default) { (action) in
+            if LinkTextField.text! != "" {
+                self.composeView.insertTextAtCurser("![\(altTextField.text! != "" ? altTextField.text! : "Click here")](\(LinkTextField.text!))")
+            }
+        }
+        alertView.addAction(cancelAction)
+        alertView.addAction(insertAction)
+        
+        self.presentViewController(alertView, animated: true) {
+            
+        }
+    }
+    
+    func addCodeBlock() {
+        self.composeView.insertTextAtCurser("    ")
+    }
+    
+//MARK: CodeViewDelegate Methods
+    
+    func textUpdated(text: String) {
+        do {
+            try self.previewWebView.loadHTMLString(MMMarkdown.HTMLStringWithMarkdown(text), baseURL: nil)
+        } catch {
+            print("failed to convert to HTML")
+        }
+        
+    }
+    
+//MARK: WebViewDelegate methods
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == UIWebViewNavigationType.LinkClicked {
+            UIApplication.sharedApplication().openURL(request.URL!)
+            return false
+        }
+        return true
+    }
 }
