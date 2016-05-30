@@ -19,7 +19,8 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //composeview set up
+        self.composeView.setfont(UIFont(name: "Hack", size: 17.0)!)
         self.composeView.delegate = self
         //Keyboard toolbar set up
         let toolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 100, 70))
