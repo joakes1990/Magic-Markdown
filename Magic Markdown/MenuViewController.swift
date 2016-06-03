@@ -11,7 +11,7 @@ import SafariServices
 
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    let menuOptions: [String] = ["Settings", "Markdown Reference", "Save", "Rename"]
+    let menuOptions: [String] = ["Open", "Save", "Rename", "Settings", "Markdown Reference"]
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,6 +41,15 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("0 pressed")
             break
         case 1:
+            print("1 pressed")
+            break
+        case 2:
+            print("2 pressed")
+            break
+        case 3:
+            print("3 pressed")
+            break
+        case 4:
             self.displayReference()
             break
         default:

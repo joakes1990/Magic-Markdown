@@ -22,6 +22,10 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         //composeview set up
         self.composeView.setfont(UIFont(name: "Hack", size: 17.0)!)
         self.composeView.delegate = self
+        
+        if !DocumentController.appHasBeenOpen() {
+            self.composeView.setText(DocumentController.defaultString())
+        }
         //Keyboard toolbar set up
         let toolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 100, 70))
         
