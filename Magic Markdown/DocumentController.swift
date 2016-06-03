@@ -10,6 +10,8 @@ import UIKit
 
 public class DocumentController: NSObject {
     
+    var openDocument: Document?
+    
     class func appHasBeenOpen() -> Bool {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         if userDefaults.boolForKey(Constants.previouslyRanDefault) {
@@ -34,6 +36,16 @@ public class DocumentController: NSObject {
         }
         
         
+    }
+    
+    class func previousDocumentAvailable() -> Bool {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        if (userDefaults.stringForKey(Constants.previouslyOpenDocument) != nil) {
+            //see if available
+            return true
+        } else {
+            return false
+        }
     }
 
 }

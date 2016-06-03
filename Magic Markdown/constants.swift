@@ -9,7 +9,9 @@
 import Foundation
 
 struct Constants {
+    
     //MARK: user defaults
     static let previouslyRanDefault = "previouslyRan"
+    static let previouslyOpenDocument = "previousDocumentName"
     
 }

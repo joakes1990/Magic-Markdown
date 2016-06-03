@@ -25,6 +25,10 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         
         if !DocumentController.appHasBeenOpen() {
             self.composeView.setText(DocumentController.defaultString())
+        } else if DocumentController.previousDocumentAvailable() {
+            //open previous document
+        } else {
+            self.composeView.setText("")
         }
         //Keyboard toolbar set up
         let toolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 100, 70))
@@ -35,7 +39,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         let codeButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Code3x"), style: .Plain, target: self, action: #selector(addCodeBlock))
         let flexSpace: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         let fixedSpace: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
-        fixedSpace.width = 40
+        fixedSpace.width = UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone ? 15 : 50
         toolbar.items = [flexSpace, quoteButton, fixedSpace, linkButton, fixedSpace, imageButton, fixedSpace, codeButton, flexSpace]
         
         self.composeView.addTextViewAccessoryView(toolbar)
