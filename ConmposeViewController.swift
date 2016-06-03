@@ -8,7 +8,7 @@
 
 import UIKit
 import OKSGutteredCodeView
-
+import SafariServices
 
 class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDelegate {
 
@@ -154,7 +154,9 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
 //MARK: WebViewDelegate methods
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if navigationType == UIWebViewNavigationType.LinkClicked {
-            UIApplication.sharedApplication().openURL(request.URL!)
+            let sfVC: SFSafariViewController = SFSafariViewController(URL: NSURL(string: (request.URL?.absoluteString)!)!)
+            self.presentViewController(sfVC, animated: true, completion: nil)
+
             return false
         }
         return true
