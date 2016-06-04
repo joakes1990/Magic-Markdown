@@ -12,10 +12,8 @@
 		D0420FC31D011BF800C19560 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0420FC21D011BF800C19560 /* constants.swift */; };
 		D0420FC61D011D3500C19560 /* firstRun.md in Sources */ = {isa = PBXBuildFile; fileRef = D0420FC51D011D3500C19560 /* firstRun.md */; };
 		D0420FC71D011D6D00C19560 /* firstRun.md in Resources */ = {isa = PBXBuildFile; fileRef = D0420FC51D011D3500C19560 /* firstRun.md */; };
-		D0420FC91D011DC100C19560 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0420FC81D011DC100C19560 /* DocumentController.swift */; };
 		D0C25F611CFBE74600E9F2E9 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C25F601CFBE74600E9F2E9 /* MenuViewController.swift */; };
 		D0C25F641CFBEF5D00E9F2E9 /* Hack-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0C25F621CFBEE0100E9F2E9 /* Hack-Regular.ttf */; };
-		D0D9844A1D0138C400DF485C /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D984491D0138C400DF485C /* Document.swift */; };
 		D0DD7EA61CEAAEEC00058359 /* ConmposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DD7EA51CEAAEEC00058359 /* ConmposeViewController.swift */; };
 		D0DEA7291CE1786400963AF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEA7281CE1786400963AF6 /* AppDelegate.swift */; };
 		D0DEA72E1CE1786400963AF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DEA72C1CE1786400963AF6 /* Main.storyboard */; };
@@ -23,6 +21,8 @@
 		D0DEA7331CE1786400963AF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DEA7311CE1786400963AF6 /* LaunchScreen.storyboard */; };
 		D0DEA73E1CE1786500963AF6 /* Magic_MarkdownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEA73D1CE1786500963AF6 /* Magic_MarkdownTests.swift */; };
 		D0DEA7491CE1786500963AF6 /* Magic_MarkdownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEA7481CE1786500963AF6 /* Magic_MarkdownUITests.swift */; };
+		D0EA6E2A1D03771F0073B9C6 /* MarkdownDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EA6E291D03771F0073B9C6 /* MarkdownDocument.swift */; };
+		D0EA6E2C1D038BD60073B9C6 /* DocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EA6E2B1D038BD60073B9C6 /* DocumentManager.swift */; };
 		D8AF49DE302689EA6B533E30 /* Pods_Magic_Markdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533B035AE62790B335D00443 /* Pods_Magic_Markdown.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,11 +53,9 @@
 		BA2611BFE1341A03DDB5C8DB /* Pods-Magic MarkdownUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic MarkdownUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Magic MarkdownUITests/Pods-Magic MarkdownUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D0420FC21D011BF800C19560 /* constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		D0420FC51D011D3500C19560 /* firstRun.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = firstRun.md; sourceTree = "<group>"; };
-		D0420FC81D011DC100C19560 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
 		D0BED23F1CFA6205004155D3 /* Magic Markdown-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Magic Markdown-Bridging-Header.h"; sourceTree = "<group>"; };
 		D0C25F601CFBE74600E9F2E9 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D0C25F621CFBEE0100E9F2E9 /* Hack-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hack-Regular.ttf"; sourceTree = "<group>"; };
-		D0D984491D0138C400DF485C /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		D0DD7EA51CEAAEEC00058359 /* ConmposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConmposeViewController.swift; path = ../ConmposeViewController.swift; sourceTree = "<group>"; };
 		D0DEA7251CE1786400963AF6 /* Magic Markdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Markdown.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DEA7281CE1786400963AF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +69,9 @@
 		D0DEA7441CE1786500963AF6 /* Magic MarkdownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Magic MarkdownUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DEA7481CE1786500963AF6 /* Magic_MarkdownUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magic_MarkdownUITests.swift; sourceTree = "<group>"; };
 		D0DEA74A1CE1786500963AF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0EA6E281D034B370073B9C6 /* Magic Markdown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Magic Markdown.entitlements"; sourceTree = "<group>"; };
+		D0EA6E291D03771F0073B9C6 /* MarkdownDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownDocument.swift; sourceTree = "<group>"; };
+		D0EA6E2B1D038BD60073B9C6 /* DocumentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentManager.swift; sourceTree = "<group>"; };
 		DCFB7DD905D71981AE756E17 /* Pods-Magic MarkdownUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic MarkdownUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Magic MarkdownUITests/Pods-Magic MarkdownUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E14A84E890BDBA24ECB27D7D /* Pods_Magic_MarkdownUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Magic_MarkdownUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -153,8 +154,9 @@
 		D0DEA7271CE1786400963AF6 /* Magic Markdown */ = {
 			isa = PBXGroup;
 			children = (
-				D0D984491D0138C400DF485C /* Document.swift */,
-				D0420FC81D011DC100C19560 /* DocumentController.swift */,
+				D0EA6E281D034B370073B9C6 /* Magic Markdown.entitlements */,
+				D0EA6E291D03771F0073B9C6 /* MarkdownDocument.swift */,
+				D0EA6E2B1D038BD60073B9C6 /* DocumentManager.swift */,
 				D0DD7EA51CEAAEEC00058359 /* ConmposeViewController.swift */,
 				D0C25F601CFBE74600E9F2E9 /* MenuViewController.swift */,
 				D0DEA7281CE1786400963AF6 /* AppDelegate.swift */,
@@ -272,6 +274,11 @@
 					D0DEA7241CE1786400963AF6 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 26VT895967;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					D0DEA7381CE1786500963AF6 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -462,11 +469,11 @@
 			files = (
 				D0420FC61D011D3500C19560 /* firstRun.md in Sources */,
 				D0DD7EA61CEAAEEC00058359 /* ConmposeViewController.swift in Sources */,
-				D0420FC91D011DC100C19560 /* DocumentController.swift in Sources */,
 				D0C25F611CFBE74600E9F2E9 /* MenuViewController.swift in Sources */,
 				D0DEA7291CE1786400963AF6 /* AppDelegate.swift in Sources */,
-				D0D9844A1D0138C400DF485C /* Document.swift in Sources */,
+				D0EA6E2C1D038BD60073B9C6 /* DocumentManager.swift in Sources */,
 				D0420FC31D011BF800C19560 /* constants.swift in Sources */,
+				D0EA6E2A1D03771F0073B9C6 /* MarkdownDocument.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +619,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Magic Markdown/Magic Markdown.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Magic Markdown/Info.plist";
@@ -631,6 +639,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Magic Markdown/Magic Markdown.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Magic Markdown/Info.plist";

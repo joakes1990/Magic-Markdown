@@ -15,6 +15,8 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
     @IBOutlet weak var composeView: OKSGutteredCodeView!
     @IBOutlet weak var previewWebView: UIWebView!
     @IBOutlet weak var previewWidth: NSLayoutConstraint!
+    @IBOutlet weak var codeViewBottomOffSet: NSLayoutConstraint!
+    
     var previewVisable: Bool = false
     
     override func viewDidLoad() {
@@ -23,9 +25,9 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         self.composeView.setfont(UIFont(name: "Hack", size: 17.0)!)
         self.composeView.delegate = self
         
-        if !DocumentController.appHasBeenOpen() {
-            self.composeView.setText(DocumentController.defaultString())
-        } else if DocumentController.previousDocumentAvailable() {
+        if !DocumentManager.appHasBeenOpen() {
+            self.composeView.setText(DocumentManager.defaultString())
+        } else if DocumentManager.previousDocumentAvailable() {
             //open previous document
         } else {
             self.composeView.setText("")
@@ -153,6 +155,26 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
             print("failed to convert to HTML")
         }
         
+    }
+    
+    func keyboardWillAppear(notification: NSNotification) {
+        let info = notification.userInfo
+        let infoNSValue = info![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let keyboardRect = infoNSValue.CGRectValue()
+        let diff = self.view.bounds.height - keyboardRect.origin.y
+        self.codeViewBottomOffSet.constant = diff
+        
+        UIView.animateWithDuration(0.25) { 
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        self.codeViewBottomOffSet.constant = 0
+        
+        UIView.animateWithDuration(0.25) {
+            self.view.layoutIfNeeded()
+        }
     }
     
 //MARK: WebViewDelegate methods

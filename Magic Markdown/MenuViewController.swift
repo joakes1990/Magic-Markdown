@@ -11,7 +11,7 @@ import SafariServices
 
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    let menuOptions: [String] = ["Open", "Save", "Rename", "Settings", "Markdown Reference"]
+    let menuOptions: [String] = ["Open", "Save", "Rename", "New Document", "Settings", "Markdown Reference"]
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,7 +41,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("0 pressed")
             break
         case 1:
-            print("1 pressed")
+            self.saveOpenDocument()
             break
         case 2:
             print("2 pressed")
@@ -50,6 +50,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("3 pressed")
             break
         case 4:
+            print("4 pressed")
+            break
+        case 5:
             self.displayReference()
             break
         default:
@@ -57,8 +60,46 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             break
         }
     }
+    
+    func saveOpenDocument() {
+        if DocumentManager.sharedInstance.currentOpenDocument != nil {
+            //TODO: save the currently open document
+        } else {
+            self.saveAs()
+        }
+    }
+    
+    func saveAs() {
+        let saveAsAlertController: UIAlertController = UIAlertController(title: "Save As", message: nil, preferredStyle: .Alert)
+        saveAsAlertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "Document Name"
+        }
+        let nameTextField: UITextField = saveAsAlertController.textFields![0]
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let saveAction: UIAlertAction = UIAlertAction(title: "Save", style: .Default) { (action) in
+            if DocumentManager.sharedInstance.docNameAvailable(nameTextField.text!) {
+                //save the doc
+            } else {
+                let invalideNameAlertController: UIAlertController = UIAlertController(title: "Invalid Name", message: "It looks like that name it taken. Try again?", preferredStyle: .Alert)
+                let nopeAction: UIAlertAction = UIAlertAction(title: "Nope", style: .Cancel, handler: nil)
+                let sureAction: UIAlertAction = UIAlertAction(title: "Sure", style: .Default, handler: { (action) in
+                    self.saveAs()
+                })
+                invalideNameAlertController.addAction(nopeAction)
+                invalideNameAlertController.addAction(sureAction)
+                self.presentViewController(invalideNameAlertController, animated: true, completion: nil)
+            }
+        }
+        saveAsAlertController.addAction(cancelAction)
+        saveAsAlertController.addAction(saveAction)
+        self.presentViewController(saveAsAlertController, animated: true, completion: nil)
+        
+    }
+    
     func displayReference() {
         let sfVC: SFSafariViewController = SFSafariViewController(URL: NSURL(string: "https://daringfireball.net/projects/markdown/")!)
         self.presentViewController(sfVC, animated: true, completion: nil)
     }
+    
+        
 }
