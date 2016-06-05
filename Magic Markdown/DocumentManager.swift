@@ -40,13 +40,50 @@ class DocumentManager: NSObject {
     }
     
     func docNameAvailable(name: String) -> Bool {
-        var nameAvailable: Bool = false
+        var nameAvailable: Bool = true
         for doc: MarkdownDocument in self.documents {
             if doc.fileURL.lastPathComponent == name {
-                nameAvailable = true
+                nameAvailable = false
             }
         }
         return nameAvailable
     }
-
+    
+    func getDocURL(name: String) -> NSURL {
+        if DocumentManager.iCloudAvailable() {
+            //TODO: Handel geting icloud url
+            return NSURL()
+        } else {
+            return name.substringFromIndex(name.startIndex.advancedBy(name.characters.count - 3)) == ".md" ? NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name) : NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name).URLByAppendingPathExtension("md")
+        }
+    }
+    
+    func saveWithName(name: String) {
+        var documentToBesaved: MarkdownDocument?
+        for doc: MarkdownDocument in self.documents {
+            if doc.fileURL.lastPathComponent == name {
+                documentToBesaved = doc
+            }
+        }
+        if documentToBesaved == nil {
+            documentToBesaved = MarkdownDocument(fileURL: self.getDocURL(name))
+            documentToBesaved!.saveToURL(self.getDocURL(name), forSaveOperation: .ForCreating, completionHandler: { (success) in
+                if success {
+                    print("successfuly created Document")
+                } else {
+                    print("failed to save document")
+                }
+            })
+            self.documents.append(documentToBesaved!)
+        } else {
+            documentToBesaved!.saveToURL((documentToBesaved?.fileURL)!, forSaveOperation: .ForOverwriting, completionHandler: { (success) in
+                if success {
+                    print("successfuly overwrote document")
+                } else {
+                    print("failed to overwrite document")
+                }
+            })
+        }
+        
+    }
 }

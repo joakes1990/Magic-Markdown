@@ -78,7 +78,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         let saveAction: UIAlertAction = UIAlertAction(title: "Save", style: .Default) { (action) in
             if DocumentManager.sharedInstance.docNameAvailable(nameTextField.text!) {
-                //save the doc
+                DocumentManager.sharedInstance.saveWithName(nameTextField.text!)
             } else {
                 let invalideNameAlertController: UIAlertController = UIAlertController(title: "Invalid Name", message: "It looks like that name it taken. Try again?", preferredStyle: .Alert)
                 let nopeAction: UIAlertAction = UIAlertAction(title: "Nope", style: .Cancel, handler: nil)
