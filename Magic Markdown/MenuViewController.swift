@@ -63,7 +63,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func saveOpenDocument() {
         if DocumentManager.sharedInstance.currentOpenDocument != nil {
-            DocumentManager.sharedInstance.saveWithName((DocumentManager.sharedInstance.currentOpenDocument?.fileURL.lastPathComponent)!)
+            let parentView: ConmposeViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! ConmposeViewController
+            let text: String = parentView.composeView.getText()
+            DocumentManager.sharedInstance.saveWithName((DocumentManager.sharedInstance.currentOpenDocument?.fileURL.lastPathComponent!)!, data: text)
         } else {
             self.saveAs()
         }
@@ -78,7 +80,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         let saveAction: UIAlertAction = UIAlertAction(title: "Save", style: .Default) { (action) in
             if DocumentManager.sharedInstance.docNameAvailable(nameTextField.text!) {
-                DocumentManager.sharedInstance.saveWithName(nameTextField.text!)
+                let parentView: ConmposeViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! ConmposeViewController
+                let text: String = parentView.composeView.getText()
+                DocumentManager.sharedInstance.saveWithName(nameTextField.text!, data: text)
             } else {
                 let invalideNameAlertController: UIAlertController = UIAlertController(title: "Invalid Name", message: "It looks like that name it taken. Try again?", preferredStyle: .Alert)
                 let nopeAction: UIAlertAction = UIAlertAction(title: "Nope", style: .Cancel, handler: nil)
