@@ -61,12 +61,13 @@ class DocumentManager: NSObject {
     func saveWithName(name: String) {
         var documentToBesaved: MarkdownDocument?
         for doc: MarkdownDocument in self.documents {
-            if doc.fileURL.lastPathComponent == name {
+            if doc.fileURL.lastPathComponent == "\(name).md" || doc.fileURL.lastPathComponent == name {
                 documentToBesaved = doc
             }
         }
         if documentToBesaved == nil {
             documentToBesaved = MarkdownDocument(fileURL: self.getDocURL(name))
+            //TODO: add md sting as data here
             documentToBesaved!.saveToURL(self.getDocURL(name), forSaveOperation: .ForCreating, completionHandler: { (success) in
                 if success {
                     print("successfuly created Document")
@@ -76,6 +77,7 @@ class DocumentManager: NSObject {
             })
             self.documents.append(documentToBesaved!)
         } else {
+            //TODO: add md sting as data here too
             documentToBesaved!.saveToURL((documentToBesaved?.fileURL)!, forSaveOperation: .ForOverwriting, completionHandler: { (success) in
                 if success {
                     print("successfuly overwrote document")
@@ -84,6 +86,6 @@ class DocumentManager: NSObject {
                 }
             })
         }
-        
+        self.currentOpenDocument = documentToBesaved
     }
 }

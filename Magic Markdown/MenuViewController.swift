@@ -63,7 +63,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func saveOpenDocument() {
         if DocumentManager.sharedInstance.currentOpenDocument != nil {
-            //TODO: save the currently open document
+            DocumentManager.sharedInstance.saveWithName((DocumentManager.sharedInstance.currentOpenDocument?.fileURL.lastPathComponent)!)
         } else {
             self.saveAs()
         }
