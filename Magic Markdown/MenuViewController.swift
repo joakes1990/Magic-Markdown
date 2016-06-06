@@ -38,7 +38,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.row {
         case 0:
-            print("0 pressed")
+            self.performSegueWithIdentifier(Constants.openSegue, sender: self)
             break
         case 1:
             self.saveOpenDocument()
@@ -83,6 +83,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let parentView: ConmposeViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! ConmposeViewController
                 let text: String = parentView.composeView.getText()
                 DocumentManager.sharedInstance.saveWithName(nameTextField.text!, data: text)
+                self.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 let invalideNameAlertController: UIAlertController = UIAlertController(title: "Invalid Name", message: "It looks like that name it taken. Try again?", preferredStyle: .Alert)
                 let nopeAction: UIAlertAction = UIAlertAction(title: "Nope", style: .Cancel, handler: nil)

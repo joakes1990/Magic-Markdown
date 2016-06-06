@@ -58,6 +58,52 @@ class DocumentManager: NSObject {
         }
     }
     
+    //MARK: opening
+    
+    func listAllDocuments() -> [String] {
+        //TODO: mark this user default later on
+        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useiCloud) {
+           //TODO: do iCloud stuff
+            return []
+        } else {
+            var files: [String] = []
+            let fileManager: NSFileManager = NSFileManager.defaultManager()
+            let docsDirURL: NSURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            do {
+                files = try fileManager.contentsOfDirectoryAtPath(docsDirURL.path!)
+            } catch {
+                print("No documents found")
+            }
+            return files
+        }
+    }
+    
+    func openDocumentWithName(name: String) {
+        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useiCloud) {
+            //TODO: do iCloud stuff
+            
+        } else {
+            let fileURL: NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name)
+            let mardownDocument: MarkdownDocument = MarkdownDocument(fileURL: fileURL)
+            mardownDocument.openWithCompletionHandler({ (success) in
+                if !success {
+                    print("failed to open")
+                    return
+                }
+                let stringData = mardownDocument.text != nil ? mardownDocument.text : ""
+                weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
+                dispatch_async(dispatch_get_main_queue(), {
+                    if parentView != nil {
+                        parentView!.composeView.setText(stringData!)
+                    }
+                })
+            })
+        }
+    }
+    
+    
+    //MARK: saving
+    
     func saveWithName(name: String, data: String) {
         var documentToBesaved: MarkdownDocument?
         for doc: MarkdownDocument in self.documents {
@@ -67,12 +113,7 @@ class DocumentManager: NSObject {
         }
         if documentToBesaved == nil {
             documentToBesaved = MarkdownDocument(fileURL: self.getDocURL(name))
-            do {
-                try documentToBesaved!.contentsForType(data)
-            } catch {
-                print("failed to insert text into document")
-            }
-            
+            documentToBesaved?.text = data
             documentToBesaved!.saveToURL(self.getDocURL(name), forSaveOperation: .ForCreating, completionHandler: { (success) in
                 if success {
                     print("successfuly created Document")
@@ -82,11 +123,7 @@ class DocumentManager: NSObject {
             })
             self.documents.append(documentToBesaved!)
         } else {
-            do {
-                try documentToBesaved!.contentsForType(data)
-            } catch {
-                print("failed to insert text into document")
-            }
+            documentToBesaved?.text = data
             documentToBesaved!.saveToURL((documentToBesaved?.fileURL)!, forSaveOperation: .ForOverwriting, completionHandler: { (success) in
                 if success {
                     print("successfuly overwrote document")

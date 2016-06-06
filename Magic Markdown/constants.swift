@@ -13,5 +13,8 @@ struct Constants {
     //MARK: user defaults
     static let previouslyRanDefault = "previouslyRan"
     static let previouslyOpenDocument = "previousDocumentName"
+    static let useiCloud = "useiCloud"
     
+    //MARK: segue identifiers
+    static let openSegue = "openSegue"
 }
