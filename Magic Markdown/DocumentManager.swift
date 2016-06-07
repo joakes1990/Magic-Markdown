@@ -15,13 +15,28 @@ class DocumentManager: NSObject {
     var documents: [MarkdownDocument] = []
     var currentOpenDocument: MarkdownDocument?
     
+    override init() {
+        super.init()
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useiCloud) {
+            //TODO: do iCloud stuff
+        
+        } else {
+            let docNames: [String] = self.listAllDocuments()
+            for name: String in docNames {
+                let document: MarkdownDocument = MarkdownDocument(fileURL: self.getDocURL(name))
+                self.documents.append(document)
+            }
+        }
+    }
+    
     class func iCloudAvailable() -> Bool {
         return false
     }
     
     class func appHasBeenOpen() -> Bool {
         let opened: Bool? = NSUserDefaults.standardUserDefaults().boolForKey(Constants.previouslyRanDefault)
-        if opened != nil {
+        if opened != nil && opened == true {
             return true
         } else {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.previouslyRanDefault)
@@ -31,12 +46,22 @@ class DocumentManager: NSObject {
     }
     
     class func defaultString() -> String {
-        return NSBundle.mainBundle().pathForResource("firstRun", ofType: "md")!
+        do {
+            return try String(contentsOfFile: NSBundle.mainBundle().pathForResource("firstRun", ofType: "md")!)
+        } catch {
+            print("failed to read file from bundel")
+            return ""
+        }
+        
     }
     
     class func previousDocumentAvailable() -> Bool {
-        //TODO: Actually check for this later
-        return false
+        let previousDocumentName = NSUserDefaults.standardUserDefaults().stringForKey(Constants.previouslyOpenDocument)
+        if previousDocumentName != nil && !DocumentManager.sharedInstance.docNameAvailable(previousDocumentName!) {
+            return true
+        } else {
+            return false
+        }
     }
     
     func docNameAvailable(name: String) -> Bool {
@@ -61,7 +86,6 @@ class DocumentManager: NSObject {
     //MARK: opening
     
     func listAllDocuments() -> [String] {
-        //TODO: mark this user default later on
         if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useiCloud) {
            //TODO: do iCloud stuff
             return []
@@ -98,6 +122,10 @@ class DocumentManager: NSObject {
                     }
                 })
             })
+            mardownDocument.closeWithCompletionHandler(nil)
+            self.currentOpenDocument = mardownDocument
+            NSUserDefaults.standardUserDefaults().setObject(self.currentOpenDocument?.fileURL.lastPathComponent!, forKey: Constants.previouslyOpenDocument)
+            NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
     
@@ -133,5 +161,7 @@ class DocumentManager: NSObject {
             })
         }
         self.currentOpenDocument = documentToBesaved
+        NSUserDefaults.standardUserDefaults().setObject(self.currentOpenDocument?.fileURL.lastPathComponent!, forKey: Constants.previouslyOpenDocument)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }

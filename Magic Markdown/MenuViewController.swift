@@ -66,12 +66,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             let parentView: ConmposeViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! ConmposeViewController
             let text: String = parentView.composeView.getText()
             DocumentManager.sharedInstance.saveWithName((DocumentManager.sharedInstance.currentOpenDocument?.fileURL.lastPathComponent!)!, data: text)
+            self.dismissViewControllerAnimated(true, completion: nil)
         } else {
             self.saveAs()
         }
     }
     
     func saveAs() {
+        weak var safeSelf = self
         let saveAsAlertController: UIAlertController = UIAlertController(title: "Save As", message: nil, preferredStyle: .Alert)
         saveAsAlertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = "Document Name"
@@ -83,21 +85,21 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let parentView: ConmposeViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! ConmposeViewController
                 let text: String = parentView.composeView.getText()
                 DocumentManager.sharedInstance.saveWithName(nameTextField.text!, data: text)
-                self.dismissViewControllerAnimated(true, completion: nil)
+                safeSelf!.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 let invalideNameAlertController: UIAlertController = UIAlertController(title: "Invalid Name", message: "It looks like that name it taken. Try again?", preferredStyle: .Alert)
                 let nopeAction: UIAlertAction = UIAlertAction(title: "Nope", style: .Cancel, handler: nil)
                 let sureAction: UIAlertAction = UIAlertAction(title: "Sure", style: .Default, handler: { (action) in
-                    self.saveAs()
+                    safeSelf!.saveAs()
                 })
                 invalideNameAlertController.addAction(nopeAction)
                 invalideNameAlertController.addAction(sureAction)
-                self.presentViewController(invalideNameAlertController, animated: true, completion: nil)
+                safeSelf!.presentViewController(invalideNameAlertController, animated: true, completion: nil)
             }
         }
         saveAsAlertController.addAction(cancelAction)
         saveAsAlertController.addAction(saveAction)
-        self.presentViewController(saveAsAlertController, animated: true, completion: nil)
+        safeSelf!.presentViewController(saveAsAlertController, animated: true, completion: nil)
         
     }
     

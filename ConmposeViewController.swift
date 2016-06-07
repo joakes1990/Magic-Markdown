@@ -28,7 +28,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         if !DocumentManager.appHasBeenOpen() {
             self.composeView.setText(DocumentManager.defaultString())
         } else if DocumentManager.previousDocumentAvailable() {
-            //open previous document
+            DocumentManager.sharedInstance.openDocumentWithName(NSUserDefaults.standardUserDefaults().stringForKey(Constants.previouslyOpenDocument)!)
         } else {
             self.composeView.setText("")
         }
