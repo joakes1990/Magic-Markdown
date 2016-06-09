@@ -164,4 +164,26 @@ class DocumentManager: NSObject {
         NSUserDefaults.standardUserDefaults().setObject(self.currentOpenDocument?.fileURL.lastPathComponent!, forKey: Constants.previouslyOpenDocument)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
+    
+    //MARK: deleteing
+    
+    func deleteDocumentWithName(name: String) {
+        var documentsCopy: [MarkdownDocument] = []
+        weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
+        if name == self.currentOpenDocument?.fileURL.lastPathComponent {
+            self.currentOpenDocument = nil
+            parentView?.composeView.setText("")
+        }
+        for doc: MarkdownDocument in self.documents {
+            if name != doc.fileURL.lastPathComponent {
+                documentsCopy.append(doc)
+            } else {
+                do {
+                    try NSFileManager.defaultManager().removeItemAtURL(doc.fileURL)
+                } catch {
+                    print("failed to delete document")
+                }
+            }
+        }
+    }
 }

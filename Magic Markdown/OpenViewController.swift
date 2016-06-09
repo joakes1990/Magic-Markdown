@@ -54,5 +54,20 @@ class OpenViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
-
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.row > 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            DocumentManager.sharedInstance.deleteDocumentWithName(availableDocuments[indexPath.row - 1])
+            self.availableDocuments.removeAtIndex(indexPath.row - 1)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
 }
