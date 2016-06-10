@@ -79,7 +79,7 @@ class DocumentManager: NSObject {
             //TODO: Handel geting icloud url
             return NSURL()
         } else {
-            return name.substringFromIndex(name.startIndex.advancedBy(name.characters.count - 3)) == ".md" ? NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name) : NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name).URLByAppendingPathExtension("md")
+            return name.characters.count > 3 && name.substringFromIndex(name.startIndex.advancedBy(name.characters.count - 3)) == ".md" ? NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name) : NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name).URLByAppendingPathExtension("md")
         }
     }
     
@@ -168,6 +168,7 @@ class DocumentManager: NSObject {
     //MARK: deleteing
     
     func deleteDocumentWithName(name: String) {
+        //TODO: iCloud stuff
         var documentsCopy: [MarkdownDocument] = []
         weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
         if name == self.currentOpenDocument?.fileURL.lastPathComponent {
@@ -185,5 +186,28 @@ class DocumentManager: NSObject {
                 }
             }
         }
+    }
+    
+    //MARK: renameing
+    
+    func renameFileNamed(name: String, newName: String) {
+        let newDestination = newName.characters.count > 3 && newName.substringFromIndex(newName.startIndex.advancedBy(newName.characters.count - 3)) == ".md" ? newName : "\(newName).md"
+        let newDocumentURL: NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(newDestination)
+        for doc: MarkdownDocument in self.documents {
+            if doc.fileURL.lastPathComponent == name {
+                do {
+                    try NSFileManager.defaultManager().moveItemAtURL(doc.fileURL, toURL: newDocumentURL)
+                    self.documents = []
+                    let docNames: [String] = self.listAllDocuments()
+                    for name: String in docNames {
+                        let document: MarkdownDocument = MarkdownDocument(fileURL: self.getDocURL(name))
+                        self.documents.append(document)
+                    }
+
+                } catch {
+                    print("failed to rename document")
+                }
+            }
+        }        
     }
 }

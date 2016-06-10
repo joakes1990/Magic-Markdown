@@ -63,11 +63,41 @@ class OpenViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            DocumentManager.sharedInstance.deleteDocumentWithName(availableDocuments[indexPath.row - 1])
-            self.availableDocuments.removeAtIndex(indexPath.row - 1)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        if indexPath.row > 0 {
+            let renameAction: UITableViewRowAction = UITableViewRowAction(style: .Normal, title: "Rename", handler: { (action, indexPath) in
+                let renameAlert: UIAlertController = UIAlertController(title: "Rename Document", message: "", preferredStyle: .Alert)
+                renameAlert.addTextFieldWithConfigurationHandler { (textField) in
+                    textField.placeholder = "New Name"
+                }
+                let newNameField = renameAlert.textFields![0]
+                let cancelAction: UIAlertAction = UIAlertAction(title: "cancel", style: .Cancel, handler: nil)
+                let renameAlertAction: UIAlertAction = UIAlertAction(title: "Rename", style: .Default, handler: { (action) in
+                    if DocumentManager.sharedInstance.docNameAvailable("\(newNameField.text!).md") && DocumentManager.sharedInstance.docNameAvailable(newNameField.text!) {
+                        DocumentManager.sharedInstance.renameFileNamed(self.availableDocuments[indexPath.row - 1], newName: newNameField.text!)
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    } else {
+                        let failedAlert: UIAlertController = UIAlertController(title: "Failed to Rename", message: "The name provided was not available.", preferredStyle: .Alert)
+                        let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                        failedAlert.addAction(okAction)
+                        self.presentViewController(failedAlert, animated: true, completion: nil)
+                    }
+                })
+                renameAlert.addAction(cancelAction)
+                renameAlert.addAction(renameAlertAction)
+                
+                self.presentViewController(renameAlert, animated: true, completion: nil)
+            })
+            
+            let deleteAction: UITableViewRowAction = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action, indexPath) in
+                DocumentManager.sharedInstance.deleteDocumentWithName(self.availableDocuments[indexPath.row - 1])
+                self.availableDocuments.removeAtIndex(indexPath.row - 1)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            })
+            return [deleteAction, renameAction]
+        } else {
+            return nil
         }
     }
 }
