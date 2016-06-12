@@ -21,7 +21,7 @@ class DocumentManager: NSObject {
     override init() {
         super.init()
 
-    let docNames: [String] = self.listAllDocuments()
+        let docNames: [String] = self.listAllDocuments()
         for name: String in docNames {
             let document: MarkdownDocument = MarkdownDocument(fileURL: self.getDocURL(name))
             self.documents.append(document)
@@ -88,7 +88,6 @@ class DocumentManager: NSObject {
     
     func getDocURL(name: String) -> NSURL {
         if self.useiCloud {
-            //TODO: Handel geting icloud url
             return name.characters.count > 3 && name.substringFromIndex(name.startIndex.advancedBy(name.characters.count - 3)) == ".md" ? self.iCloudRoot!.URLByAppendingPathComponent(name) : self.iCloudRoot!.URLByAppendingPathComponent("\(name).md")
         } else {
             return name.characters.count > 3 && name.substringFromIndex(name.startIndex.advancedBy(name.characters.count - 3)) == ".md" ? NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name) : NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name).URLByAppendingPathExtension("md")
@@ -110,15 +109,23 @@ class DocumentManager: NSObject {
             } catch {
                 print("No documents found")
             }
-            return files
+        
+        self.documents = []
+        for doc: String in files {
+            self.documents.append(MarkdownDocument(fileURL: self.getDocURL(doc)))
+        }
+
+        return files
     }
     
     func openDocumentWithName(name: String) {
-        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useiCloud) {
-            //TODO: do iCloud stuff
+        var fileURL: NSURL
+        if self.useiCloud {
+            fileURL = iCloudRoot!.URLByAppendingPathComponent(name)
             
         } else {
-            let fileURL: NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name)
+            fileURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name)
+        }
             let mardownDocument: MarkdownDocument = MarkdownDocument(fileURL: fileURL)
             mardownDocument.openWithCompletionHandler({ (success) in
                 if !success {
@@ -137,7 +144,6 @@ class DocumentManager: NSObject {
             self.currentOpenDocument = mardownDocument
             NSUserDefaults.standardUserDefaults().setObject(self.currentOpenDocument?.fileURL.lastPathComponent!, forKey: Constants.previouslyOpenDocument)
             NSUserDefaults.standardUserDefaults().synchronize()
-        }
     }
     
     
@@ -179,7 +185,6 @@ class DocumentManager: NSObject {
     //MARK: deleteing
     
     func deleteDocumentWithName(name: String) {
-        //TODO: iCloud stuff
         var documentsCopy: [MarkdownDocument] = []
         weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
         if name == self.currentOpenDocument?.fileURL.lastPathComponent {
@@ -197,13 +202,14 @@ class DocumentManager: NSObject {
                 }
             }
         }
+        self.documents = documentsCopy
     }
     
     //MARK: renameing
     
     func renameFileNamed(name: String, newName: String) {
         let newDestination = newName.characters.count > 3 && newName.substringFromIndex(newName.startIndex.advancedBy(newName.characters.count - 3)) == ".md" ? newName : "\(newName).md"
-        let newDocumentURL: NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(newDestination)
+        let newDocumentURL: NSURL = self.useiCloud ? (self.iCloudRoot?.URLByAppendingPathComponent(newDestination))! : NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(newDestination)
         for doc: MarkdownDocument in self.documents {
             if doc.fileURL.lastPathComponent == name {
                 do {
