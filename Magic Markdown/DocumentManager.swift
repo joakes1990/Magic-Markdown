@@ -14,6 +14,8 @@ class DocumentManager: NSObject {
     
     var documents: [MarkdownDocument] = []
     var currentOpenDocument: MarkdownDocument?
+    var useiCloud: Bool = false
+    var iCloudRoot: NSURL?
     
     override init() {
         super.init()
@@ -30,8 +32,22 @@ class DocumentManager: NSObject {
         }
     }
     
-    class func iCloudAvailable() -> Bool {
-        return false
+     func checkforiCloud() {
+        guard let iCloudRootDir = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)
+            else {
+                print("icloud Not available")
+                return
+        }
+        dispatch_async(dispatch_get_main_queue()) { 
+            self.iCloudRoot = iCloudRootDir
+            if NSUserDefaults.standardUserDefaults().boolForKey(Constants.askedForiCloud) {
+                self.useiCloud = NSUserDefaults.standardUserDefaults().boolForKey(Constants.useiCloud)
+            } else {
+                // Message to ask about iCloud set asked for icloud to true in observer
+                let notification: NSNotification = NSNotification(name: Constants.askForiCloudnotification, object: nil)
+                NSNotificationCenter.defaultCenter().postNotification(notification)
+            }
+        }
     }
     
     class func appHasBeenOpen() -> Bool {
@@ -75,7 +91,7 @@ class DocumentManager: NSObject {
     }
     
     func getDocURL(name: String) -> NSURL {
-        if DocumentManager.iCloudAvailable() {
+        if self.useiCloud {
             //TODO: Handel geting icloud url
             return NSURL()
         } else {

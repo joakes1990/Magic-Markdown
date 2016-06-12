@@ -47,7 +47,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("2 pressed")
             break
         case 3:
-            print("3 pressed")
+            self.displayReference()
             break
         default:
             print("somthing else pressed")

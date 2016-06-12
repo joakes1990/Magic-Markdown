@@ -14,7 +14,12 @@ struct Constants {
     static let previouslyRanDefault = "previouslyRan"
     static let previouslyOpenDocument = "previousDocumentName"
     static let useiCloud = "useiCloud"
+    static let askedForiCloud = "askedForiCloud"
     
     //MARK: segue identifiers
     static let openSegue = "openSegue"
+    
+    //MARK: NSNotifications
+    static let askForiCloudnotification = "askForiCloud"
+    
 }

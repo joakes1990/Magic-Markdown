@@ -22,6 +22,9 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         //composeview set up
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(askForiCloud), name: Constants.askForiCloudnotification, object: nil)
+       
+        
         self.composeView.setfont(UIFont(name: "Hack", size: 17.0)!)
         self.composeView.delegate = self
         
@@ -175,6 +178,26 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         UIView.animateWithDuration(0.25) {
             self.view.layoutIfNeeded()
         }
+    }
+    
+    func askForiCloud() {
+        let alert: UIAlertController = UIAlertController(title: "Use iCloud?", message: "iCloud makes it easy to sync your documents with other devices", preferredStyle: .Alert)
+        let whyNotAction: UIAlertAction = UIAlertAction(title: "Why not", style: .Default) { (action) in
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.useiCloud)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.askedForiCloud)
+            DocumentManager.sharedInstance.useiCloud = true
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+        let noThanksAction: UIAlertAction = UIAlertAction(title: "No thanks", style: .Cancel) { (action) in
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: Constants.useiCloud)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.askedForiCloud)
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+        
+        alert.addAction(noThanksAction)
+        alert.addAction(whyNotAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
 //MARK: WebViewDelegate methods
