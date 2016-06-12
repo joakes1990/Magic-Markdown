@@ -16,30 +16,26 @@ class DocumentManager: NSObject {
     var currentOpenDocument: MarkdownDocument?
     var useiCloud: Bool = false
     var iCloudRoot: NSURL?
+    private var Query: NSMetadataQuery?
     
     override init() {
         super.init()
-        
-        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useiCloud) {
-            //TODO: do iCloud stuff
-        
-        } else {
-            let docNames: [String] = self.listAllDocuments()
-            for name: String in docNames {
-                let document: MarkdownDocument = MarkdownDocument(fileURL: self.getDocURL(name))
-                self.documents.append(document)
-            }
-        }
+
+    let docNames: [String] = self.listAllDocuments()
+        for name: String in docNames {
+            let document: MarkdownDocument = MarkdownDocument(fileURL: self.getDocURL(name))
+            self.documents.append(document)
+       }
     }
     
      func checkforiCloud() {
-        guard let iCloudRootDir = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)
+        guard let iCloudRootDir = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier("iCloud.com.oklasoft.Magic-Markdown")
             else {
                 print("icloud Not available")
                 return
         }
         dispatch_async(dispatch_get_main_queue()) { 
-            self.iCloudRoot = iCloudRootDir
+            self.iCloudRoot = iCloudRootDir.URLByAppendingPathComponent("/Documents")
             if NSUserDefaults.standardUserDefaults().boolForKey(Constants.askedForiCloud) {
                 self.useiCloud = NSUserDefaults.standardUserDefaults().boolForKey(Constants.useiCloud)
             } else {
@@ -93,7 +89,7 @@ class DocumentManager: NSObject {
     func getDocURL(name: String) -> NSURL {
         if self.useiCloud {
             //TODO: Handel geting icloud url
-            return NSURL()
+            return name.characters.count > 3 && name.substringFromIndex(name.startIndex.advancedBy(name.characters.count - 3)) == ".md" ? self.iCloudRoot!.URLByAppendingPathComponent(name) : self.iCloudRoot!.URLByAppendingPathComponent("\(name).md")
         } else {
             return name.characters.count > 3 && name.substringFromIndex(name.startIndex.advancedBy(name.characters.count - 3)) == ".md" ? NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name) : NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name).URLByAppendingPathExtension("md")
         }
@@ -102,20 +98,19 @@ class DocumentManager: NSObject {
     //MARK: opening
     
     func listAllDocuments() -> [String] {
-        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useiCloud) {
-           //TODO: do iCloud stuff
-            return []
+        var docsDirURL: NSURL
+        if self.useiCloud {
+            docsDirURL = self.iCloudRoot!
         } else {
+            docsDirURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+        }
             var files: [String] = []
-            let fileManager: NSFileManager = NSFileManager.defaultManager()
-            let docsDirURL: NSURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
             do {
-                files = try fileManager.contentsOfDirectoryAtPath(docsDirURL.path!)
+                files = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(docsDirURL.path!)
             } catch {
                 print("No documents found")
             }
             return files
-        }
     }
     
     func openDocumentWithName(name: String) {
@@ -226,4 +221,6 @@ class DocumentManager: NSObject {
             }
         }        
     }
+    
+
 }
