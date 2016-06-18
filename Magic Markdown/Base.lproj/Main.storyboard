@@ -23,7 +23,7 @@
                                 <items>
                                     <barButtonItem image="menu" id="gO5-Ad-e1M">
                                         <connections>
-                                            <segue destination="m3k-aL-Jxp" kind="popoverPresentation" popoverAnchorBarButtonItem="gO5-Ad-e1M" id="n1M-Ca-qij">
+                                            <segue destination="m3k-aL-Jxp" kind="popoverPresentation" identifier="menuSegue" popoverAnchorBarButtonItem="gO5-Ad-e1M" id="n1M-Ca-qij">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -144,7 +144,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="APF-XR-o6g" id="bGH-6d-kdu">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

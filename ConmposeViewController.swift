@@ -210,4 +210,73 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         }
         return true
     }
+    
+//MARK: Keycommand methods
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: "s", modifierFlags: .Command, action: #selector(save), discoverabilityTitle: "Save"),
+            UIKeyCommand(input: "o", modifierFlags: .Command, action: #selector(open), discoverabilityTitle: "Open"),
+            UIKeyCommand(input: "p", modifierFlags: [.Alternate, .Command], action: #selector(showPreview), discoverabilityTitle: "Preview Toggle"),
+            UIKeyCommand(input: "+", modifierFlags: .Command, action: #selector(increaseFont), discoverabilityTitle: "Increase Font Size"),
+            UIKeyCommand(input: "-", modifierFlags: .Command, action: #selector(decreaseFont), discoverabilityTitle: "Decrease Font Size")
+            ]
+    }
+    
+    func save() {
+        if DocumentManager.sharedInstance.currentOpenDocument != nil {
+            let parentView: ConmposeViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! ConmposeViewController
+            let text: String = parentView.composeView.getText()
+            DocumentManager.sharedInstance.saveWithName((DocumentManager.sharedInstance.currentOpenDocument?.fileURL.lastPathComponent!)!, data: text)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            weak var safeSelf = self
+            let saveAsAlertController: UIAlertController = UIAlertController(title: "Save As", message: nil, preferredStyle: .Alert)
+            saveAsAlertController.addTextFieldWithConfigurationHandler { (textField) in
+                textField.placeholder = "Document Name"
+            }
+            let nameTextField: UITextField = saveAsAlertController.textFields![0]
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            let saveAction: UIAlertAction = UIAlertAction(title: "Save", style: .Default) { (action) in
+                if DocumentManager.sharedInstance.docNameAvailable(nameTextField.text!) {
+                    let parentView: ConmposeViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! ConmposeViewController
+                    let text: String = parentView.composeView.getText()
+                    DocumentManager.sharedInstance.saveWithName(nameTextField.text!, data: text)
+                    safeSelf!.dismissViewControllerAnimated(true, completion: nil)
+                } else {
+                    let invalideNameAlertController: UIAlertController = UIAlertController(title: "Invalid Name", message: "It looks like that name it taken. Try again?", preferredStyle: .Alert)
+                    let nopeAction: UIAlertAction = UIAlertAction(title: "Nope", style: .Cancel, handler: nil)
+                    let sureAction: UIAlertAction = UIAlertAction(title: "Sure", style: .Default, handler: { (action) in
+                        safeSelf!.save()
+                    })
+                    invalideNameAlertController.addAction(nopeAction)
+                    invalideNameAlertController.addAction(sureAction)
+                    safeSelf!.presentViewController(invalideNameAlertController, animated: true, completion: nil)
+                }
+            }
+            saveAsAlertController.addAction(cancelAction)
+            saveAsAlertController.addAction(saveAction)
+            safeSelf!.presentViewController(saveAsAlertController, animated: true, completion: nil)
+        }
+    }
+    
+    func open() {
+        self.performSegueWithIdentifier(Constants.menuSegue, sender: self)
+    }
+    
+    func increaseFont() {
+        let fontSize: CGFloat = (self.composeView.getFont()?.pointSize)! + 1.0
+        self.composeView.setfont(UIFont(name: "Hack", size: fontSize)!)
+        
+    }
+    
+    func decreaseFont() {
+        let fontSize: CGFloat = (self.composeView.getFont()?.pointSize)! - 1.0
+        self.composeView.setfont(UIFont(name: "Hack", size: fontSize)!)
+    }
+    
 }
