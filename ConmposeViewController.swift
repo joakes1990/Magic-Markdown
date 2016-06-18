@@ -152,6 +152,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
 //MARK: CodeViewDelegate Methods
     
     func textUpdated(text: String) {
+        self.highlightText()
         do {
             try self.previewWebView.loadHTMLString(MMMarkdown.HTMLStringWithMarkdown(text), baseURL: nil)
         } catch {
@@ -278,5 +279,32 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         let fontSize: CGFloat = (self.composeView.getFont()?.pointSize)! - 1.0
         self.composeView.setfont(UIFont(name: "Hack", size: fontSize)!)
     }
+    
+    //MARK: highlighting methods
+    
+    func highlightText() {
+        let attributes: [String : AnyObject] = ["#" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.purpleColor],
+                                                "=" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.redColor],
+                                                "_" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.redColor],
+                                                "*" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.greenColor],
+                                                "!" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.blueColor],
+                                                "[" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.blueColor],
+                                                "]" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.blueColor],
+                                                "(" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.blueColor],
+                                                ")" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.blueColor]]
+        let text: String = self.composeView.getText()
+        let attributedText : NSMutableAttributedString = NSMutableAttributedString()
+        
+        for char in text.characters {
+            let charString = String(char)
+            if attributes[charString] != nil {
+                attributedText.appendAttributedString(NSMutableAttributedString(string: charString, attributes: (attributes[charString] as! [String : AnyObject])))
+            } else {
+                attributedText.appendAttributedString(NSAttributedString(string: charString, attributes: [NSFontAttributeName : self.composeView.getFont()!]))
+            }
+        }
+        self.composeView.setAttributedText(attributedText)
+    }
+    
     
 }

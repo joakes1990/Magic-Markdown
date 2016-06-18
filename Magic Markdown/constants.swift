@@ -23,4 +23,9 @@ struct Constants {
     //MARK: NSNotifications
     static let askForiCloudnotification = "askForiCloud"
     
+    //MARK: Colors
+    static let purpleColor: UIColor = UIColor(red: 0.443, green: 0.290, blue: 0.753, alpha: 1.00)
+    static let redColor: UIColor = UIColor(red: 0.831, green: 0.196, blue: 0.122, alpha: 1.00)
+    static let greenColor: UIColor = UIColor(red: 0.180, green: 0.518, blue: 0.184, alpha: 1.00)
+    static let blueColor: UIColor = UIColor(red: 0.137, green: 0.282, blue: 0.898, alpha: 1.00)
 }
