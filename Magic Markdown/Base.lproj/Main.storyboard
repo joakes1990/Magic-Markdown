@@ -29,6 +29,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="HOl-jR-6FJ"/>
+                                    <barButtonItem systemItem="action" id="OIR-w9-F73">
+                                        <connections>
+                                            <action selector="shareOpenDocument:" destination="BYZ-38-t0r" id="mjl-oh-67e"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem image="preview" id="UBP-zs-0LJ">
                                         <connections>
                                             <action selector="showPreview:" destination="BYZ-38-t0r" id="qWu-vn-dIw"/>
@@ -66,6 +71,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="actionButton" destination="OIR-w9-F73" id="Uuj-Pt-W4F"/>
                         <outlet property="codeViewBottomOffSet" destination="SAq-iA-h8X" id="Cc6-MH-t7m"/>
                         <outlet property="composeView" destination="pao-ed-nme" id="D2W-Jg-lEM"/>
                         <outlet property="previewWebView" destination="waG-td-jWT" id="uF6-kj-edt"/>

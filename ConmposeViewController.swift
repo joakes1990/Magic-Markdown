@@ -16,6 +16,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
     @IBOutlet weak var previewWebView: UIWebView!
     @IBOutlet weak var previewWidth: NSLayoutConstraint!
     @IBOutlet weak var codeViewBottomOffSet: NSLayoutConstraint!
+    @IBOutlet weak var actionButton: UIBarButtonItem!
     
     var previewVisable: Bool = false
     
@@ -304,6 +305,22 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
             }
         }
         self.composeView.setAttributedText(attributedText)
+    }
+    
+    //MARK: sharing
+    
+    @IBAction func shareOpenDocument(sender: AnyObject) {
+        if DocumentManager.sharedInstance.currentOpenDocument == nil {
+            let alert: UIAlertController = UIAlertController(title: "No Document Open", message: "No Document is currently open. Please save this one or open an existing one to share whith the share sheet", preferredStyle: .Alert)
+            let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+            alert.addAction(okAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            let activityItems: [NSURL] = [(DocumentManager.sharedInstance.currentOpenDocument?.fileURL)!]
+            let actionView: UIActivityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+            actionView.popoverPresentationController?.barButtonItem = self.actionButton
+            self.presentViewController(actionView, animated: true, completion: nil)
+        }
     }
     
     
