@@ -161,7 +161,7 @@ class DocumentManager: NSObject {
             documentToBesaved?.text = data
             documentToBesaved!.saveToURL(self.getDocURL(name), forSaveOperation: .ForCreating, completionHandler: { (success) in
                 if success {
-                    print("successfuly created Document")
+                    NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: Constants.saveSuccessful, object: nil))
                 } else {
                     print("failed to save document")
                 }
@@ -171,7 +171,7 @@ class DocumentManager: NSObject {
             documentToBesaved?.text = data
             documentToBesaved!.saveToURL((documentToBesaved?.fileURL)!, forSaveOperation: .ForOverwriting, completionHandler: { (success) in
                 if success {
-                    print("successfuly overwrote document")
+                    NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: Constants.saveSuccessful, object: nil))
                 } else {
                     print("failed to overwrite document")
                 }

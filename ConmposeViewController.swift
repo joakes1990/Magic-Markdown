@@ -24,7 +24,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         super.viewDidLoad()
         //composeview set up
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(askForiCloud), name: Constants.askForiCloudnotification, object: nil)
-       
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(saveSuccess), name: Constants.saveSuccessful, object: nil)
         
         self.composeView.setfont(UIFont(name: "Hack", size: 17.0)!)
         self.composeView.delegate = self
@@ -82,6 +82,10 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
     func rotatePreview() {
         self.previewWidth.constant = self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact ? self.view.bounds.width : self.view.bounds.width / 2
 
+    }
+    
+    func saveSuccess() {
+        self.view.makeToast("Save Successful")
     }
     
 //MARK: insertion methods
