@@ -131,10 +131,10 @@
             </objects>
             <point key="canvasLocation" x="1136" y="994"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings Menu View Controller-->
         <scene sceneID="b86-XL-dKa">
             <objects>
-                <viewController id="Pbj-c9-cJi" sceneMemberID="viewController">
+                <viewController id="Pbj-c9-cJi" customClass="SettingsMenuViewController" customModule="Magic_Markdown" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dp6-Rt-icf"/>
                         <viewControllerLayoutGuide type="bottom" id="SsE-C1-9HO"/>
@@ -151,6 +151,9 @@
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="cSq-5c-9oL">
                                 <rect key="frame" x="486" y="101" width="94" height="29"/>
+                                <connections>
+                                    <action selector="changeSize:" destination="Pbj-c9-cJi" eventType="valueChanged" id="asm-b6-4Hh"/>
+                                </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfV-yq-KCg">
                                 <rect key="frame" x="486" y="71" width="94" height="24"/>
@@ -224,6 +227,10 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="fontSizeLabel" destination="PfV-yq-KCg" id="PFV-ba-vw8"/>
+                        <outlet property="fontSizeStepper" destination="cSq-5c-9oL" id="len-CO-wNI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awu-so-CHQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

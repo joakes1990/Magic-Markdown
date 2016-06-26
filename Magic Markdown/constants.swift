@@ -15,6 +15,7 @@ struct Constants {
     static let previouslyOpenDocument = "previousDocumentName"
     static let useiCloud = "useiCloud"
     static let askedForiCloud = "askedForiCloud"
+    static let fontSize = "fontSize"
     
     //MARK: segue identifiers
     static let openSegue = "openSegue"

@@ -26,7 +26,8 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(askForiCloud), name: Constants.askForiCloudnotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(saveSuccess), name: Constants.saveSuccessful, object: nil)
         
-        self.composeView.setfont(UIFont(name: "Hack", size: 17.0)!)
+        let fontSize = NSUserDefaults.standardUserDefaults().objectForKey(Constants.fontSize) != nil ? NSUserDefaults.standardUserDefaults().doubleForKey(Constants.fontSize) : 17.0
+        self.composeView.setfont(UIFont(name: "Hack", size: CGFloat(fontSize))!)
         self.composeView.delegate = self
         
         if !DocumentManager.appHasBeenOpen() {
@@ -277,12 +278,16 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
     func increaseFont() {
         let fontSize: CGFloat = (self.composeView.getFont()?.pointSize)! + 1.0
         self.composeView.setfont(UIFont(name: "Hack", size: fontSize)!)
+        NSUserDefaults.standardUserDefaults().setDouble(Double(fontSize), forKey: Constants.fontSize)
+        NSUserDefaults.standardUserDefaults().synchronize()
         
     }
     
     func decreaseFont() {
         let fontSize: CGFloat = (self.composeView.getFont()?.pointSize)! - 1.0
         self.composeView.setfont(UIFont(name: "Hack", size: fontSize)!)
+        NSUserDefaults.standardUserDefaults().setDouble(Double(fontSize), forKey: Constants.fontSize)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     //MARK: highlighting methods
