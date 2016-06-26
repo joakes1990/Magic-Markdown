@@ -44,7 +44,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.saveOpenDocument()
             break
         case 2:
-            print("2 pressed")
+            self.performSegueWithIdentifier(Constants.settingsSegue, sender: self)
             break
         case 3:
             self.displayReference()

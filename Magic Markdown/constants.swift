@@ -19,6 +19,7 @@ struct Constants {
     //MARK: segue identifiers
     static let openSegue = "openSegue"
     static let menuSegue = "menuSegue"
+    static let settingsSegue = "settingsSegue"
     
     //MARK: NSNotifications
     static let askForiCloudnotification = "askForiCloud"
