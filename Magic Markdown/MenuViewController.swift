@@ -57,8 +57,8 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func saveOpenDocument() {
         if DocumentManager.sharedInstance.currentOpenDocument != nil {
-            let parentView: ConmposeViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! ConmposeViewController
-            let text: String = parentView.composeView.getText()
+            weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
+            let text: String = parentView!.composeView.getText()
             DocumentManager.sharedInstance.saveWithName((DocumentManager.sharedInstance.currentOpenDocument?.fileURL.lastPathComponent!)!, data: text)
             self.dismissViewControllerAnimated(true, completion: nil)
         } else {

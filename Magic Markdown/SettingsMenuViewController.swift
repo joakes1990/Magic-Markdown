@@ -12,13 +12,14 @@ class SettingsMenuViewController: UIViewController {
 
     @IBOutlet weak var fontSizeLabel: UILabel!
     @IBOutlet weak var fontSizeStepper: UIStepper!
+    @IBOutlet weak var saveOnExitSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
         self.fontSizeLabel.text = "\(parentView!.composeView.getFont()!.pointSize)"
         self.fontSizeStepper.value = Double((parentView?.composeView.getFont()?.pointSize)!)
-        // Do any additional setup after loading the view.
+        self.saveOnExitSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(Constants.saveOnExit)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,4 +38,8 @@ class SettingsMenuViewController: UIViewController {
     }
 
 
+    @IBAction func toggleSaveOnExit(sender: AnyObject) {
+        NSUserDefaults.standardUserDefaults().setBool(self.saveOnExitSwitch.on, forKey: Constants.saveOnExit)
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
 }

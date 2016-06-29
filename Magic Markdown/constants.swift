@@ -16,6 +16,7 @@ struct Constants {
     static let useiCloud = "useiCloud"
     static let askedForiCloud = "askedForiCloud"
     static let fontSize = "fontSize"
+    static let saveOnExit = "saveOnExit"
     
     //MARK: segue identifiers
     static let openSegue = "openSegue"

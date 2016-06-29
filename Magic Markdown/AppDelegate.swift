@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        if NSUserDefaults.standardUserDefaults().objectForKey(Constants.saveOnExit) == nil {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.saveOnExit)
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             DocumentManager.sharedInstance.checkforiCloud()
         }
@@ -29,6 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.saveOnExit) && DocumentManager.sharedInstance.currentOpenDocument != nil {
+            weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
+            let text: String = parentView!.composeView.getText()
+            DocumentManager.sharedInstance.saveWithName((DocumentManager.sharedInstance.currentOpenDocument?.fileURL.lastPathComponent!)!, data: text)
+        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
