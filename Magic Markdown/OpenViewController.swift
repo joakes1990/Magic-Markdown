@@ -14,7 +14,6 @@ class OpenViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
     }
 
@@ -36,6 +35,9 @@ class OpenViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.textLabel?.text = "+ Create New Document"
         } else{
             cell.textLabel?.text = availableDocuments[indexPath.row - 1]
+        }
+        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useDarkmode) {
+            cell.textLabel?.textColor = Constants.dayTimeBarColor
         }
         return cell
     }

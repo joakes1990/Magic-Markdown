@@ -12,11 +12,13 @@ import SafariServices
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let menuOptions: [String] = ["Document Management", "Save", "Settings", "Markdown Reference"]
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let size: CGSize = CGSizeMake(320, 320); // size of view in popover
         self.preferredContentSize = size;
+        self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -32,6 +34,11 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("menuCell")!
         cell.textLabel?.text = self.menuOptions[indexPath.row]
+        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useDarkmode) {
+            cell.textLabel?.textColor = Constants.dayTimeBarColor
+        } else {
+            cell.textLabel?.textColor = UIColor.blackColor()
+        }
         return cell
     }
     

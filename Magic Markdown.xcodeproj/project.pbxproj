@@ -13,6 +13,7 @@
 		D0420FC31D011BF800C19560 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0420FC21D011BF800C19560 /* constants.swift */; };
 		D0420FC61D011D3500C19560 /* firstRun.md in Sources */ = {isa = PBXBuildFile; fileRef = D0420FC51D011D3500C19560 /* firstRun.md */; };
 		D0420FC71D011D6D00C19560 /* firstRun.md in Resources */ = {isa = PBXBuildFile; fileRef = D0420FC51D011D3500C19560 /* firstRun.md */; };
+		D09FDAFF1D28141700CE154F /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09FDAFE1D28141700CE154F /* AppearanceController.swift */; };
 		D0A11F861D2082470082A866 /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A11F851D2082470082A866 /* SettingsMenuViewController.swift */; };
 		D0C25F611CFBE74600E9F2E9 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C25F601CFBE74600E9F2E9 /* MenuViewController.swift */; };
 		D0C25F641CFBEF5D00E9F2E9 /* Hack-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0C25F621CFBEE0100E9F2E9 /* Hack-Regular.ttf */; };
@@ -56,6 +57,7 @@
 		D026AAA21D048C8400D6E7C6 /* OpenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenViewController.swift; sourceTree = "<group>"; };
 		D0420FC21D011BF800C19560 /* constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		D0420FC51D011D3500C19560 /* firstRun.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = firstRun.md; sourceTree = "<group>"; };
+		D09FDAFE1D28141700CE154F /* AppearanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceController.swift; sourceTree = "<group>"; };
 		D0A11F851D2082470082A866 /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; };
 		D0BED23F1CFA6205004155D3 /* Magic Markdown-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Magic Markdown-Bridging-Header.h"; sourceTree = "<group>"; };
 		D0C25F601CFBE74600E9F2E9 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				D0DEA7311CE1786400963AF6 /* LaunchScreen.storyboard */,
 				D0DEA7341CE1786400963AF6 /* Info.plist */,
 				D0420FC21D011BF800C19560 /* constants.swift */,
+				D09FDAFE1D28141700CE154F /* AppearanceController.swift */,
 			);
 			path = "Magic Markdown";
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				D0EA6E2C1D038BD60073B9C6 /* DocumentManager.swift in Sources */,
 				D0420FC31D011BF800C19560 /* constants.swift in Sources */,
 				D0EA6E2A1D03771F0073B9C6 /* MarkdownDocument.swift in Sources */,
+				D09FDAFF1D28141700CE154F /* AppearanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

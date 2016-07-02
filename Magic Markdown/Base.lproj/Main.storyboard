@@ -76,6 +76,7 @@
                         <outlet property="composeView" destination="pao-ed-nme" id="D2W-Jg-lEM"/>
                         <outlet property="previewWebView" destination="waG-td-jWT" id="uF6-kj-edt"/>
                         <outlet property="previewWidth" destination="qhT-7E-k4Q" id="Tig-Jg-1QY"/>
+                        <outlet property="toolBar" destination="PQF-Yf-geN" id="LZc-hF-9aS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -123,6 +124,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="wlb-dF-6hy"/>
                     <connections>
+                        <outlet property="tableView" destination="MwX-a6-0gk" id="tSR-4P-t5K"/>
                         <segue destination="pP9-rE-E5d" kind="show" identifier="openSegue" id="vWa-RM-P3h"/>
                         <segue destination="Pbj-c9-cJi" kind="show" identifier="settingsSegue" id="QJj-R2-D7f"/>
                     </connections>
@@ -146,11 +148,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Font Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRQ-sW-R22">
                                 <rect key="frame" x="20" y="72" width="71" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="cSq-5c-9oL">
                                 <rect key="frame" x="486" y="101" width="94" height="29"/>
+                                <color key="tintColor" red="1" green="0.75686274509803919" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="changeSize:" destination="Pbj-c9-cJi" eventType="valueChanged" id="asm-b6-4Hh"/>
                                 </connections>
@@ -158,13 +161,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfV-yq-KCg">
                                 <rect key="frame" x="486" y="71" width="94" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto Save" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Prb-xI-8eX">
                                 <rect key="frame" x="20" y="153" width="77" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vfH-Uc-R4K">
@@ -175,11 +178,14 @@
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="THH-aZ-eH6">
                                 <rect key="frame" x="509" y="187" width="51" height="31"/>
+                                <connections>
+                                    <action selector="toggleDarkMode:" destination="Pbj-c9-cJi" eventType="valueChanged" id="QUK-fx-eiw"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tq7-38-5hj">
                                 <rect key="frame" x="20" y="192" width="84" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -203,6 +209,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="autoSaveLabel" destination="Prb-xI-8eX" id="09z-MR-b6d"/>
+                        <outlet property="darkModeLabel" destination="tq7-38-5hj" id="geB-un-K7I"/>
+                        <outlet property="darkmodeSwitch" destination="THH-aZ-eH6" id="uRS-ne-iIw"/>
+                        <outlet property="fontLabel" destination="LRQ-sW-R22" id="WHb-Cm-qUk"/>
                         <outlet property="fontSizeLabel" destination="PfV-yq-KCg" id="PFV-ba-vw8"/>
                         <outlet property="fontSizeStepper" destination="cSq-5c-9oL" id="len-CO-wNI"/>
                         <outlet property="saveOnExitSwitch" destination="vfH-Uc-R4K" id="Hol-6q-sYo"/>
@@ -232,7 +242,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="APF-XR-o6g" id="bGH-6d-kdu">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

@@ -17,6 +17,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
     @IBOutlet weak var previewWidth: NSLayoutConstraint!
     @IBOutlet weak var codeViewBottomOffSet: NSLayoutConstraint!
     @IBOutlet weak var actionButton: UIBarButtonItem!
+    @IBOutlet weak var toolBar: UIToolbar!
     
     var previewVisable: Bool = false
     
@@ -29,6 +30,9 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         let fontSize = NSUserDefaults.standardUserDefaults().objectForKey(Constants.fontSize) != nil ? NSUserDefaults.standardUserDefaults().doubleForKey(Constants.fontSize) : 17.0
         self.composeView.setfont(UIFont(name: "Hack", size: CGFloat(fontSize))!)
         self.composeView.delegate = self
+        self.setBarColor()
+        self.previewWebView.layer.borderWidth = 1.0
+        self.previewWebView.layer.borderColor = UIColor(red: 0.561, green: 0.584, blue: 0.588, alpha: 1.00).CGColor
         
         if !DocumentManager.appHasBeenOpen() {
             self.composeView.setText(DocumentManager.defaultString())
@@ -89,6 +93,28 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         self.view.makeToast("Save Successful")
     }
     
+    func setBarColor() {
+        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useDarkmode) {
+            self.composeView.setGutterBackgroundColor(Constants.nightTimeBarColor)
+            self.composeView.addFontColor(Constants.dayTimeBarColor)
+            self.composeView.setTextViewBackgroundColor(UIColor.blackColor())
+            self.composeView.textViewDidChange(UITextView())
+            self.view.backgroundColor = UIColor.blackColor()
+            self.toolBar.barTintColor = Constants.nightTimeBarColor
+            self.toolBar.tintColor = Constants.nightTimeTintColor
+            UIApplication.sharedApplication().statusBarStyle = .LightContent
+        } else {
+            self.composeView.setGutterBackgroundColor(Constants.dayTimeBarColor)
+            self.composeView.addFontColor(UIColor.blackColor())
+            self.composeView.setTextViewBackgroundColor(UIColor.whiteColor())
+            self.composeView.textViewDidChange(UITextView())
+            self.view.backgroundColor = UIColor.whiteColor()
+            self.toolBar.barTintColor = Constants.dayTimeBarColor
+            self.toolBar.tintColor = Constants.dayTimeTint
+            UIApplication.sharedApplication().statusBarStyle = .Default
+        }
+    }
+    
 //MARK: insertion methods
     
     func addQuote() {
@@ -100,9 +126,11 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         
         alertView.addTextFieldWithConfigurationHandler { (textfield) in
             textfield.placeholder = "Alt Text"
+            textfield.backgroundColor = UIColor.whiteColor()
         }
         alertView.addTextFieldWithConfigurationHandler { (textfield) in
             textfield.placeholder = "Link URL"
+            textfield.backgroundColor = UIColor.whiteColor()
         }
         
         let altTextField = alertView.textFields![0] as UITextField
@@ -117,7 +145,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         }
         alertView.addAction(cancelAction)
         alertView.addAction(insertAction)
-        
+
         self.presentViewController(alertView, animated: true) { 
             
         }
@@ -128,9 +156,11 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         
         alertView.addTextFieldWithConfigurationHandler { (textfield) in
             textfield.placeholder = "Alt Text"
+            textfield.backgroundColor = UIColor.whiteColor()
         }
         alertView.addTextFieldWithConfigurationHandler { (textfield) in
             textfield.placeholder = "Image URL"
+            textfield.backgroundColor = UIColor.whiteColor()
         }
         
         let altTextField = alertView.textFields![0] as UITextField
@@ -310,7 +340,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
             if attributes[charString] != nil {
                 attributedText.appendAttributedString(NSMutableAttributedString(string: charString, attributes: (attributes[charString] as! [String : AnyObject])))
             } else {
-                attributedText.appendAttributedString(NSAttributedString(string: charString, attributes: [NSFontAttributeName : self.composeView.getFont()!]))
+                attributedText.appendAttributedString(NSAttributedString(string: charString, attributes: [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName : NSUserDefaults.standardUserDefaults().boolForKey(Constants.useDarkmode) ? Constants.dayTimeBarColor : UIColor.blackColor()]))
             }
         }
         self.composeView.setAttributedText(attributedText)

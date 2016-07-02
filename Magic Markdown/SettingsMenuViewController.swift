@@ -13,6 +13,13 @@ class SettingsMenuViewController: UIViewController {
     @IBOutlet weak var fontSizeLabel: UILabel!
     @IBOutlet weak var fontSizeStepper: UIStepper!
     @IBOutlet weak var saveOnExitSwitch: UISwitch!
+    @IBOutlet weak var darkmodeSwitch: UISwitch!
+    @IBOutlet weak var fontLabel: UILabel!
+    @IBOutlet weak var autoSaveLabel: UILabel!
+    @IBOutlet weak var darkModeLabel: UILabel!
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +27,17 @@ class SettingsMenuViewController: UIViewController {
         self.fontSizeLabel.text = "\(parentView!.composeView.getFont()!.pointSize)"
         self.fontSizeStepper.value = Double((parentView?.composeView.getFont()?.pointSize)!)
         self.saveOnExitSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(Constants.saveOnExit)
+        self.darkmodeSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(Constants.useDarkmode)
+        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useDarkmode) {
+            self.fontLabel.textColor = Constants.dayTimeBarColor
+            self.autoSaveLabel.textColor = Constants.dayTimeBarColor
+            self.darkModeLabel.textColor = Constants.dayTimeBarColor
+            self.view.backgroundColor = Constants.nightTimeBarColor
+            self.fontSizeLabel.textColor = Constants.dayTimeBarColor
+            self.fontSizeStepper.tintColor = Constants.nightTimeTintColor
+            self.saveOnExitSwitch.onTintColor = Constants.nightTimeTintColor
+            self.darkmodeSwitch.onTintColor = Constants.nightTimeTintColor
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,4 +60,40 @@ class SettingsMenuViewController: UIViewController {
         NSUserDefaults.standardUserDefaults().setBool(self.saveOnExitSwitch.on, forKey: Constants.saveOnExit)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
+    
+    @IBAction func toggleDarkMode(sender: AnyObject) {
+        NSUserDefaults.standardUserDefaults().setBool(self.darkmodeSwitch.on, forKey: Constants.useDarkmode)
+        NSUserDefaults.standardUserDefaults().synchronize()
+        if self.darkmodeSwitch.on {
+            weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
+            AppearanceController.setDarkMode()
+            parentView?.setBarColor()
+            self.view.backgroundColor = Constants.nightTimeBarColor
+            self.fontSizeLabel.textColor = Constants.dayTimeBarColor
+            self.fontSizeStepper.tintColor = Constants.nightTimeTintColor
+            self.saveOnExitSwitch.onTintColor = Constants.nightTimeTintColor
+            self.darkmodeSwitch.onTintColor = Constants.nightTimeTintColor
+            self.navigationController?.navigationBar.barTintColor = Constants.nightTimeBarColor
+            self.navigationController?.navigationBar.tintColor = Constants.nightTimeTintColor
+            self.fontLabel.textColor = Constants.dayTimeBarColor
+            self.autoSaveLabel.textColor = Constants.dayTimeBarColor
+            self.darkModeLabel.textColor = Constants.dayTimeBarColor
+            
+        } else {
+            weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
+            AppearanceController.setLightMode()
+            parentView?.setBarColor()
+            self.view.backgroundColor = UIColor.whiteColor()
+            self.fontSizeLabel.textColor = UIColor.blackColor()
+            self.fontSizeStepper.tintColor = Constants.dayTimeTint
+            self.saveOnExitSwitch.onTintColor = Constants.dayTimeTint
+            self.darkmodeSwitch.onTintColor = Constants.dayTimeTint
+            self.navigationController?.navigationBar.barTintColor = Constants.dayTimeBarColor
+            self.navigationController?.navigationBar.tintColor = Constants.dayTimeTint
+            self.fontLabel.textColor = UIColor.blackColor()
+            self.autoSaveLabel.textColor = UIColor.blackColor()
+            self.darkModeLabel.textColor = UIColor.blackColor()
+        }
+    }
+    
 }

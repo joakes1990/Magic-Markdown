@@ -22,6 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             DocumentManager.sharedInstance.checkforiCloud()
         }
+        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useDarkmode){
+            AppearanceController.setDarkMode()
+        } else {
+            AppearanceController.setLightMode()
+        }
         return true
     }
 
