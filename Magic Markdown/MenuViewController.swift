@@ -23,8 +23,10 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        if self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact {
+            let dismissButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(dismissViewController))
+            self.navigationItem.setRightBarButtonItem(dismissButton, animated: true)
+        }
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,5 +111,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.presentViewController(sfVC, animated: true, completion: nil)
     }
     
-        
+    func dismissViewController() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        if newCollection.horizontalSizeClass == .Compact {
+            let dismissButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(dismissViewController))
+            self.navigationItem.setRightBarButtonItem(dismissButton, animated: true)
+        }
+    }
 }

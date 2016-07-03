@@ -14,12 +14,20 @@ class OpenViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact {
+            let dismissButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(dismissViewController))
+            self.navigationItem.setRightBarButtonItem(dismissButton, animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func dismissViewController() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     //MARK: table view delegate methods

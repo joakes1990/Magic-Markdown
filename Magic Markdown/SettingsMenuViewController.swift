@@ -38,6 +38,10 @@ class SettingsMenuViewController: UIViewController {
             self.saveOnExitSwitch.onTintColor = Constants.nightTimeTintColor
             self.darkmodeSwitch.onTintColor = Constants.nightTimeTintColor
         }
+        if self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact {
+            let dismissButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(dismissViewController))
+            self.navigationItem.setRightBarButtonItem(dismissButton, animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,4 +100,7 @@ class SettingsMenuViewController: UIViewController {
         }
     }
     
+    func dismissViewController() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

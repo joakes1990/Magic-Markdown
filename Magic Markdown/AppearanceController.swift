@@ -25,7 +25,7 @@ class AppearanceController: NSObject {
     class func setDarkMode() {
         UIToolbar.appearance().tintColor = Constants.nightTimeTintColor
         UITextView.appearance().backgroundColor = UIColor.blackColor()
-        UITextField.appearance().backgroundColor = UIColor.blackColor()
+//        UITextField.appearance().backgroundColor = UIColor.blackColor()
         UIToolbar.appearance().barTintColor = Constants.nightTimeBarColor
         UISwitch.appearance().onTintColor = Constants.nightTimeTintColor
         UITableViewCell.appearance().backgroundColor = Constants.nightTimeBarColor

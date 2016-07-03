@@ -122,7 +122,9 @@
                             <constraint firstItem="MwX-a6-0gk" firstAttribute="leading" secondItem="rgK-3l-sdE" secondAttribute="leadingMargin" constant="-20" id="mly-fr-E6b"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="wlb-dF-6hy"/>
+                    <navigationItem key="navigationItem" id="wlb-dF-6hy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="V3J-xw-N3P"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="MwX-a6-0gk" id="tSR-4P-t5K"/>
                         <segue destination="pP9-rE-E5d" kind="show" identifier="openSegue" id="vWa-RM-P3h"/>
