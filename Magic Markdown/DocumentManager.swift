@@ -34,7 +34,6 @@ class DocumentManager: NSObject {
                 print("icloud Not available")
                 return
         }
-        dispatch_async(dispatch_get_main_queue()) { 
             self.iCloudRoot = iCloudRootDir.URLByAppendingPathComponent("/Documents")
             if NSUserDefaults.standardUserDefaults().boolForKey(Constants.askedForiCloud) {
                 self.useiCloud = NSUserDefaults.standardUserDefaults().boolForKey(Constants.useiCloud)
@@ -43,7 +42,6 @@ class DocumentManager: NSObject {
                 let notification: NSNotification = NSNotification(name: Constants.askForiCloudnotification, object: nil)
                 NSNotificationCenter.defaultCenter().postNotification(notification)
             }
-        }
     }
     
     class func appHasBeenOpen() -> Bool {
@@ -114,7 +112,8 @@ class DocumentManager: NSObject {
         for doc: String in files {
             self.documents.append(MarkdownDocument(fileURL: self.getDocURL(doc)))
         }
-
+        let notification: NSNotification = NSNotification(name: Constants.documentsReady, object: nil)
+        NSNotificationCenter.defaultCenter().postNotification(notification)
         return files
     }
     

@@ -26,8 +26,9 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         //composeview set up
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(askForiCloud), name: Constants.askForiCloudnotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(saveSuccess), name: Constants.saveSuccessful, object: nil)
-        
-        let fontSize = NSUserDefaults.standardUserDefaults().objectForKey(Constants.fontSize) != nil ? NSUserDefaults.standardUserDefaults().doubleForKey(Constants.fontSize) : 17.0
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(openDoc), name: Constants.documentsReady, object: nil)
+        DocumentManager.sharedInstance.listAllDocuments()
+        let fontSize = NSUserDefaults.standardUserDefaults().objectForKey(Constants.fontSize) != nil ? NSUserDefaults.standardUserDefaults().doubleForKey(Constants.fontSize) : 15.0
         self.composeView.setfont(UIFont(name: "Hack", size: CGFloat(fontSize))!)
         self.composeView.delegate = self
         self.setBarColor()
@@ -36,8 +37,6 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         
         if !DocumentManager.appHasBeenOpen() {
             self.composeView.setText(DocumentManager.defaultString())
-        } else if DocumentManager.previousDocumentAvailable() {
-            DocumentManager.sharedInstance.openDocumentWithName(NSUserDefaults.standardUserDefaults().stringForKey(Constants.previouslyOpenDocument)!)
         } else {
             self.composeView.setText("")
         }
@@ -54,6 +53,12 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         toolbar.items = [flexSpace, quoteButton, fixedSpace, linkButton, fixedSpace, imageButton, fixedSpace, codeButton, flexSpace]
         
         self.composeView.addTextViewAccessoryView(toolbar)
+    }
+    
+    func openDoc() {
+        if DocumentManager.previousDocumentAvailable() {
+            DocumentManager.sharedInstance.openDocumentWithName(NSUserDefaults.standardUserDefaults().stringForKey(Constants.previouslyOpenDocument)!)
+        }
     }
 
     override func didReceiveMemoryWarning() {
