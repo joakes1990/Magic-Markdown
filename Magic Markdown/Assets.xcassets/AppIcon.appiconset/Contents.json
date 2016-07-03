@@ -2,6 +2,60 @@
   "images" : [
     {
       "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "mmlogo29-1.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "mmlogo58-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "mmlogo87.png",
+      "scale" : "3x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "mmlogo80-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "mmlogo120-1.png",
+      "scale" : "3x"
+    },
+    {
+      "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "57.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "mmlogo114.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "mmlogo120.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "mmlogo180.png",
+      "scale" : "3x"
+    },
+    {
+      "size" : "29x29",
       "idiom" : "ipad",
       "filename" : "mmlogo29.png",
       "scale" : "1x"
@@ -25,9 +79,33 @@
       "scale" : "2x"
     },
     {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "mmlogo50.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "mmlogo100.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "mmlogo72.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "mmlogo144.png",
+      "scale" : "2x"
+    },
+    {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "mmlogo76-1.png",
+      "filename" : "mmlogo76.png",
       "scale" : "1x"
     },
     {
