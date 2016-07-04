@@ -339,7 +339,6 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
                                                 ")" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.blueColor]]
         let text: String = self.composeView.getText()
         let attributedText : NSMutableAttributedString = NSMutableAttributedString()
-        
         for char in text.characters {
             let charString = String(char)
             if attributes[charString] != nil {
