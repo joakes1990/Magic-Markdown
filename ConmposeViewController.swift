@@ -53,6 +53,10 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         toolbar.items = [flexSpace, quoteButton, fixedSpace, linkButton, fixedSpace, imageButton, fixedSpace, codeButton, flexSpace]
         
         self.composeView.addTextViewAccessoryView(toolbar)
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            DocumentManager.sharedInstance.checkforiCloud()
+        }
     }
     
     func openDoc() {
