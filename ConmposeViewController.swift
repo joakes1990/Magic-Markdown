@@ -18,6 +18,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
     @IBOutlet weak var codeViewBottomOffSet: NSLayoutConstraint!
     @IBOutlet weak var actionButton: UIBarButtonItem!
     @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet weak var titleLabel: UIBarButtonItem!
     
     var previewVisable: Bool = false
     
@@ -35,6 +36,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         self.previewWebView.layer.borderWidth = 1.0
         self.previewWebView.layer.borderColor = UIColor(red: 0.561, green: 0.584, blue: 0.588, alpha: 1.00).CGColor
         
+        self.titleLabel.enabled = false
         if !DocumentManager.appHasBeenOpen() {
             self.composeView.setText(DocumentManager.defaultString())
         } else {
@@ -57,6 +59,11 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             DocumentManager.sharedInstance.checkforiCloud()
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.titleLabel.title = DocumentManager.sharedInstance.currentOpenDocument != nil ? DocumentManager.sharedInstance.currentOpenDocument!.fileURL.lastPathComponent! : "Untitled Document"
+        self.setBarColor()
     }
     
     func openDoc() {

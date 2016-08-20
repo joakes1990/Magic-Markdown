@@ -21,6 +21,7 @@ class AppearanceController: NSObject {
         UITableView.appearance().backgroundColor = UIColor.whiteColor()
         UINavigationBar.appearance().barTintColor = Constants.dayTimeBarColor
         UINavigationBar.appearance().tintColor = Constants.dayTimeTint
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.darkTextColor()], forState: .Disabled)
     }
     class func setDarkMode() {
         UIToolbar.appearance().tintColor = Constants.nightTimeTintColor

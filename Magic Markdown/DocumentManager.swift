@@ -136,6 +136,7 @@ class DocumentManager: NSObject {
                 dispatch_async(dispatch_get_main_queue(), {
                     if parentView != nil {
                         parentView!.composeView.setText(stringData!)
+                        parentView?.titleLabel.title = name
                     }
                 })
             })
@@ -150,6 +151,7 @@ class DocumentManager: NSObject {
     
     func saveWithName(name: String, data: String) {
         var documentToBesaved: MarkdownDocument?
+        weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
         for doc: MarkdownDocument in self.documents {
             if doc.fileURL.lastPathComponent == "\(name).md" || doc.fileURL.lastPathComponent == name {
                 documentToBesaved = doc
@@ -161,6 +163,7 @@ class DocumentManager: NSObject {
             documentToBesaved!.saveToURL(self.getDocURL(name), forSaveOperation: .ForCreating, completionHandler: { (success) in
                 if success {
                     NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: Constants.saveSuccessful, object: nil))
+                    parentView?.titleLabel.title = name
                 } else {
                     print("failed to save document")
                 }
@@ -171,6 +174,7 @@ class DocumentManager: NSObject {
             documentToBesaved!.saveToURL((documentToBesaved?.fileURL)!, forSaveOperation: .ForOverwriting, completionHandler: { (success) in
                 if success {
                     NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: Constants.saveSuccessful, object: nil))
+                    parentView?.titleLabel.title = name
                 } else {
                     print("failed to overwrite document")
                 }
@@ -189,6 +193,7 @@ class DocumentManager: NSObject {
         if name == self.currentOpenDocument?.fileURL.lastPathComponent {
             self.currentOpenDocument = nil
             parentView?.composeView.setText("")
+            parentView?.titleLabel.title = "Untitled Document"
         }
         for doc: MarkdownDocument in self.documents {
             if name != doc.fileURL.lastPathComponent {
@@ -219,7 +224,7 @@ class DocumentManager: NSObject {
                         let document: MarkdownDocument = MarkdownDocument(fileURL: self.getDocURL(name))
                         self.documents.append(document)
                     }
-
+                    self.currentOpenDocument = MarkdownDocument(fileURL: newDocumentURL)
                 } catch {
                     print("failed to rename document")
                 }
