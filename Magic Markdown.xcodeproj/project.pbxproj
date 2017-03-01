@@ -11,7 +11,6 @@
 		9BA298EA96E4A3C9BB48BA12 /* Pods_Magic_MarkdownTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE0D83239A25EEF6328213D /* Pods_Magic_MarkdownTests.framework */; };
 		D026AAA31D048C8400D6E7C6 /* OpenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D026AAA21D048C8400D6E7C6 /* OpenViewController.swift */; };
 		D0420FC31D011BF800C19560 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0420FC21D011BF800C19560 /* constants.swift */; };
-		D0420FC61D011D3500C19560 /* firstRun.md in Sources */ = {isa = PBXBuildFile; fileRef = D0420FC51D011D3500C19560 /* firstRun.md */; };
 		D0420FC71D011D6D00C19560 /* firstRun.md in Resources */ = {isa = PBXBuildFile; fileRef = D0420FC51D011D3500C19560 /* firstRun.md */; };
 		D09FDAFF1D28141700CE154F /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09FDAFE1D28141700CE154F /* AppearanceController.swift */; };
 		D0A11F861D2082470082A866 /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A11F851D2082470082A866 /* SettingsMenuViewController.swift */; };
@@ -30,15 +29,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
-		D0221B141E66836A008C6384 /* PBXBuildRule */ = {
+		D0221B161E6686E5008C6384 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = "*.md";
+			compilerSpec = "com.apple.build-tasks.ls-register-url";
 			fileType = pattern.proxy;
 			isEditable = 1;
 			outputFiles = (
 			);
-			script = "echo \"Markdown file added\"";
 		};
 /* End PBXBuildRule section */
 
@@ -234,7 +231,7 @@
 				3323C7029F3AC158726F65F2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
-				D0221B141E66836A008C6384 /* PBXBuildRule */,
+				D0221B161E6686E5008C6384 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -507,7 +504,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0420FC61D011D3500C19560 /* firstRun.md in Sources */,
 				D0DD7EA61CEAAEEC00058359 /* ConmposeViewController.swift in Sources */,
 				D0C25F611CFBE74600E9F2E9 /* MenuViewController.swift in Sources */,
 				D0A11F861D2082470082A866 /* SettingsMenuViewController.swift in Sources */,
