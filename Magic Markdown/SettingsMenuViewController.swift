@@ -23,12 +23,12 @@ class SettingsMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
+        weak var parentView: ConmposeViewController? = UIApplication.shared.keyWindow!.rootViewController as? ConmposeViewController
         self.fontSizeLabel.text = "\(parentView!.composeView.getFont()!.pointSize)"
         self.fontSizeStepper.value = Double((parentView?.composeView.getFont()?.pointSize)!)
-        self.saveOnExitSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(Constants.saveOnExit)
-        self.darkmodeSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey(Constants.useDarkmode)
-        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useDarkmode) {
+        self.saveOnExitSwitch.isOn = UserDefaults.standard.bool(forKey: Constants.saveOnExit)
+        self.darkmodeSwitch.isOn = UserDefaults.standard.bool(forKey: Constants.useDarkmode)
+        if UserDefaults.standard.bool(forKey: Constants.useDarkmode) {
             self.fontLabel.textColor = Constants.dayTimeBarColor
             self.autoSaveLabel.textColor = Constants.dayTimeBarColor
             self.darkModeLabel.textColor = Constants.dayTimeBarColor
@@ -38,9 +38,9 @@ class SettingsMenuViewController: UIViewController {
             self.saveOnExitSwitch.onTintColor = Constants.nightTimeTintColor
             self.darkmodeSwitch.onTintColor = Constants.nightTimeTintColor
         }
-        if self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact {
-            let dismissButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(dismissViewController))
-            self.navigationItem.setRightBarButtonItem(dismissButton, animated: true)
+        if self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.compact {
+            let dismissButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
+            self.navigationItem.setRightBarButton(dismissButton, animated: true)
         }
     }
 
@@ -50,26 +50,26 @@ class SettingsMenuViewController: UIViewController {
     }
     
 
-    @IBAction func changeSize(sender: AnyObject) {
-        weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
+    @IBAction func changeSize(_ sender: AnyObject) {
+        weak var parentView: ConmposeViewController? = UIApplication.shared.keyWindow!.rootViewController as? ConmposeViewController
         self.fontSizeLabel.text = "\(self.fontSizeStepper.value)"
         let newFont: UIFont = UIFont(name:  ((parentView?.composeView.getFont())?.fontName)!, size: CGFloat(self.fontSizeStepper.value))!
         parentView?.composeView.setfont(newFont)
-        NSUserDefaults.standardUserDefaults().setDouble(self.fontSizeStepper.value, forKey: Constants.fontSize)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.set(self.fontSizeStepper.value, forKey: Constants.fontSize)
+        UserDefaults.standard.synchronize()
     }
 
 
-    @IBAction func toggleSaveOnExit(sender: AnyObject) {
-        NSUserDefaults.standardUserDefaults().setBool(self.saveOnExitSwitch.on, forKey: Constants.saveOnExit)
-        NSUserDefaults.standardUserDefaults().synchronize()
+    @IBAction func toggleSaveOnExit(_ sender: AnyObject) {
+        UserDefaults.standard.set(self.saveOnExitSwitch.isOn, forKey: Constants.saveOnExit)
+        UserDefaults.standard.synchronize()
     }
     
-    @IBAction func toggleDarkMode(sender: AnyObject) {
-        NSUserDefaults.standardUserDefaults().setBool(self.darkmodeSwitch.on, forKey: Constants.useDarkmode)
-        NSUserDefaults.standardUserDefaults().synchronize()
-        if self.darkmodeSwitch.on {
-            weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
+    @IBAction func toggleDarkMode(_ sender: AnyObject) {
+        UserDefaults.standard.set(self.darkmodeSwitch.isOn, forKey: Constants.useDarkmode)
+        UserDefaults.standard.synchronize()
+        if self.darkmodeSwitch.isOn {
+            weak var parentView: ConmposeViewController? = UIApplication.shared.keyWindow!.rootViewController as? ConmposeViewController
             AppearanceController.setDarkMode()
             parentView?.setBarColor()
             self.view.backgroundColor = Constants.nightTimeBarColor
@@ -84,23 +84,23 @@ class SettingsMenuViewController: UIViewController {
             self.darkModeLabel.textColor = Constants.dayTimeBarColor
             
         } else {
-            weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
+            weak var parentView: ConmposeViewController? = UIApplication.shared.keyWindow!.rootViewController as? ConmposeViewController
             AppearanceController.setLightMode()
             parentView?.setBarColor()
-            self.view.backgroundColor = UIColor.whiteColor()
-            self.fontSizeLabel.textColor = UIColor.blackColor()
+            self.view.backgroundColor = UIColor.white
+            self.fontSizeLabel.textColor = UIColor.black
             self.fontSizeStepper.tintColor = Constants.dayTimeTint
             self.saveOnExitSwitch.onTintColor = Constants.dayTimeTint
             self.darkmodeSwitch.onTintColor = Constants.dayTimeTint
             self.navigationController?.navigationBar.barTintColor = Constants.dayTimeBarColor
             self.navigationController?.navigationBar.tintColor = Constants.dayTimeTint
-            self.fontLabel.textColor = UIColor.blackColor()
-            self.autoSaveLabel.textColor = UIColor.blackColor()
-            self.darkModeLabel.textColor = UIColor.blackColor()
+            self.fontLabel.textColor = UIColor.black
+            self.autoSaveLabel.textColor = UIColor.black
+            self.darkModeLabel.textColor = UIColor.black
         }
     }
     
     func dismissViewController() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

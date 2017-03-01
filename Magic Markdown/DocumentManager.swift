@@ -15,8 +15,8 @@ class DocumentManager: NSObject {
     var documents: [MarkdownDocument] = []
     var currentOpenDocument: MarkdownDocument?
     var useiCloud: Bool = false
-    var iCloudRoot: NSURL?
-    private var Query: NSMetadataQuery?
+    var iCloudRoot: URL?
+    fileprivate var Query: NSMetadataQuery?
     
     override init() {
         super.init()
@@ -29,35 +29,35 @@ class DocumentManager: NSObject {
     }
     
      func checkforiCloud() {
-        guard let iCloudRootDir = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier("iCloud.com.oklasoft.Magic-Markdown")
+        guard let iCloudRootDir = FileManager.default.url(forUbiquityContainerIdentifier: "iCloud.com.oklasoft.Magic-Markdown")
             else {
                 print("icloud Not available")
                 return
         }
-            self.iCloudRoot = iCloudRootDir.URLByAppendingPathComponent("/Documents")
-            if NSUserDefaults.standardUserDefaults().boolForKey(Constants.askedForiCloud) {
-                self.useiCloud = NSUserDefaults.standardUserDefaults().boolForKey(Constants.useiCloud)
+            self.iCloudRoot = iCloudRootDir.appendingPathComponent("/Documents")
+            if UserDefaults.standard.bool(forKey: Constants.askedForiCloud) {
+                self.useiCloud = UserDefaults.standard.bool(forKey: Constants.useiCloud)
             } else {
                 // Message to ask about iCloud set asked for icloud to true in observer
-                let notification: NSNotification = NSNotification(name: Constants.askForiCloudnotification, object: nil)
-                NSNotificationCenter.defaultCenter().postNotification(notification)
+                let notification: Notification = Notification(name: Notification.Name(rawValue: Constants.askForiCloudnotification), object: nil)
+                NotificationCenter.default.post(notification)
             }
     }
     
     class func appHasBeenOpen() -> Bool {
-        let opened: Bool? = NSUserDefaults.standardUserDefaults().boolForKey(Constants.previouslyRanDefault)
+        let opened: Bool? = UserDefaults.standard.bool(forKey: Constants.previouslyRanDefault)
         if opened != nil && opened == true {
             return true
         } else {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.previouslyRanDefault)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(true, forKey: Constants.previouslyRanDefault)
+            UserDefaults.standard.synchronize()
             return false
         }
     }
     
     class func defaultString() -> String {
         do {
-            return try String(contentsOfFile: NSBundle.mainBundle().pathForResource("firstRun", ofType: "md")!)
+            return try String(contentsOfFile: Bundle.main.path(forResource: "firstRun", ofType: "md")!)
         } catch {
             print("failed to read file from bundel")
             return ""
@@ -66,7 +66,7 @@ class DocumentManager: NSObject {
     }
     
     class func previousDocumentAvailable() -> Bool {
-        let previousDocumentName = NSUserDefaults.standardUserDefaults().stringForKey(Constants.previouslyOpenDocument)
+        let previousDocumentName = UserDefaults.standard.string(forKey: Constants.previouslyOpenDocument)
         if previousDocumentName != nil && !DocumentManager.sharedInstance.docNameAvailable(previousDocumentName!) {
             return true
         } else {
@@ -74,7 +74,7 @@ class DocumentManager: NSObject {
         }
     }
     
-    func docNameAvailable(name: String) -> Bool {
+    func docNameAvailable(_ name: String) -> Bool {
         var nameAvailable: Bool = true
         for doc: MarkdownDocument in self.documents {
             if doc.fileURL.lastPathComponent == name {
@@ -84,26 +84,26 @@ class DocumentManager: NSObject {
         return nameAvailable
     }
     
-    func getDocURL(name: String) -> NSURL {
+    func getDocURL(_ name: String) -> URL {
         if self.useiCloud {
-            return name.characters.count > 3 && name.substringFromIndex(name.startIndex.advancedBy(name.characters.count - 3)) == ".md" ? self.iCloudRoot!.URLByAppendingPathComponent(name) : self.iCloudRoot!.URLByAppendingPathComponent("\(name).md")
+            return name.characters.count > 3 && name.substring(from: name.characters.index(name.startIndex, offsetBy: name.characters.count - 3)) == ".md" ? self.iCloudRoot!.appendingPathComponent(name) : self.iCloudRoot!.appendingPathComponent("\(name).md")
         } else {
-            return name.characters.count > 3 && name.substringFromIndex(name.startIndex.advancedBy(name.characters.count - 3)) == ".md" ? NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name) : NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name).URLByAppendingPathExtension("md")
+            return name.characters.count > 3 && name.substring(from: name.characters.index(name.startIndex, offsetBy: name.characters.count - 3)) == ".md" ? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(name) : FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(name).appendingPathExtension("md")
         }
     }
     
     //MARK: opening
     
-    func listAllDocuments() -> [String] {
-        var docsDirURL: NSURL
+    @discardableResult func listAllDocuments() -> [String] {
+        var docsDirURL: URL
         if self.useiCloud {
             docsDirURL = self.iCloudRoot!
         } else {
-            docsDirURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            docsDirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         }
             var files: [String] = []
             do {
-                files = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(docsDirURL.path!)
+                files = try FileManager.default.contentsOfDirectory(atPath: docsDirURL.path)
             } catch {
                 print("No documents found")
             }
@@ -112,46 +112,46 @@ class DocumentManager: NSObject {
         for doc: String in files {
             self.documents.append(MarkdownDocument(fileURL: self.getDocURL(doc)))
         }
-        let notification: NSNotification = NSNotification(name: Constants.documentsReady, object: nil)
-        NSNotificationCenter.defaultCenter().postNotification(notification)
+        let notification: Notification = Notification(name: Notification.Name(rawValue: Constants.documentsReady), object: nil)
+        NotificationCenter.default.post(notification)
         return files
     }
     
-    func openDocumentWithName(name: String) {
-        var fileURL: NSURL
+    func openDocumentWithName(_ name: String) {
+        var fileURL: URL
         if self.useiCloud {
-            fileURL = iCloudRoot!.URLByAppendingPathComponent(name)
+            fileURL = iCloudRoot!.appendingPathComponent(name)
             
         } else {
-            fileURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(name)
+            fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(name)
         }
             let mardownDocument: MarkdownDocument = MarkdownDocument(fileURL: fileURL)
-            mardownDocument.openWithCompletionHandler({ (success) in
+            mardownDocument.open(completionHandler: { (success) in
                 if !success {
                     print("failed to open")
                     return
                 }
                 let stringData = mardownDocument.text != nil ? mardownDocument.text : ""
-                weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
-                dispatch_async(dispatch_get_main_queue(), {
+                weak var parentView: ConmposeViewController? = UIApplication.shared.keyWindow!.rootViewController as? ConmposeViewController
+                DispatchQueue.main.async(execute: {
                     if parentView != nil {
                         parentView!.composeView.setText(stringData!)
                         parentView?.titleLabel.title = name
                     }
                 })
             })
-            mardownDocument.closeWithCompletionHandler(nil)
+            mardownDocument.close(completionHandler: nil)
             self.currentOpenDocument = mardownDocument
-            NSUserDefaults.standardUserDefaults().setObject(self.currentOpenDocument?.fileURL.lastPathComponent!, forKey: Constants.previouslyOpenDocument)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(self.currentOpenDocument?.fileURL.lastPathComponent, forKey: Constants.previouslyOpenDocument)
+            UserDefaults.standard.synchronize()
     }
     
     
     //MARK: saving
     
-    func saveWithName(name: String, data: String) {
+    func saveWithName(_ name: String, data: String) {
         var documentToBesaved: MarkdownDocument?
-        weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
+        weak var parentView: ConmposeViewController? = UIApplication.shared.keyWindow!.rootViewController as? ConmposeViewController
         for doc: MarkdownDocument in self.documents {
             if doc.fileURL.lastPathComponent == "\(name).md" || doc.fileURL.lastPathComponent == name {
                 documentToBesaved = doc
@@ -160,9 +160,9 @@ class DocumentManager: NSObject {
         if documentToBesaved == nil {
             documentToBesaved = MarkdownDocument(fileURL: self.getDocURL(name))
             documentToBesaved?.text = data
-            documentToBesaved!.saveToURL(self.getDocURL(name), forSaveOperation: .ForCreating, completionHandler: { (success) in
+            documentToBesaved!.save(to: self.getDocURL(name), for: .forCreating, completionHandler: { (success) in
                 if success {
-                    NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: Constants.saveSuccessful, object: nil))
+                    NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: Constants.saveSuccessful), object: nil))
                     parentView?.titleLabel.title = name
                 } else {
                     print("failed to save document")
@@ -171,9 +171,9 @@ class DocumentManager: NSObject {
             self.documents.append(documentToBesaved!)
         } else {
             documentToBesaved?.text = data
-            documentToBesaved!.saveToURL((documentToBesaved?.fileURL)!, forSaveOperation: .ForOverwriting, completionHandler: { (success) in
+            documentToBesaved!.save(to: (documentToBesaved?.fileURL)!, for: .forOverwriting, completionHandler: { (success) in
                 if success {
-                    NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: Constants.saveSuccessful, object: nil))
+                    NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: Constants.saveSuccessful), object: nil))
                     parentView?.titleLabel.title = name
                 } else {
                     print("failed to overwrite document")
@@ -181,15 +181,15 @@ class DocumentManager: NSObject {
             })
         }
         self.currentOpenDocument = documentToBesaved
-        NSUserDefaults.standardUserDefaults().setObject(self.currentOpenDocument?.fileURL.lastPathComponent!, forKey: Constants.previouslyOpenDocument)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.set(self.currentOpenDocument?.fileURL.lastPathComponent, forKey: Constants.previouslyOpenDocument)
+        UserDefaults.standard.synchronize()
     }
     
     //MARK: deleteing
     
-    func deleteDocumentWithName(name: String) {
+    func deleteDocumentWithName(_ name: String) {
         var documentsCopy: [MarkdownDocument] = []
-        weak var parentView: ConmposeViewController? = UIApplication.sharedApplication().keyWindow!.rootViewController as? ConmposeViewController
+        weak var parentView: ConmposeViewController? = UIApplication.shared.keyWindow!.rootViewController as? ConmposeViewController
         if name == self.currentOpenDocument?.fileURL.lastPathComponent {
             self.currentOpenDocument = nil
             parentView?.composeView.setText("")
@@ -200,7 +200,7 @@ class DocumentManager: NSObject {
                 documentsCopy.append(doc)
             } else {
                 do {
-                    try NSFileManager.defaultManager().removeItemAtURL(doc.fileURL)
+                    try FileManager.default.removeItem(at: doc.fileURL)
                 } catch {
                     print("failed to delete document")
                 }
@@ -211,13 +211,13 @@ class DocumentManager: NSObject {
     
     //MARK: renameing
     
-    func renameFileNamed(name: String, newName: String) {
-        let newDestination = newName.characters.count > 3 && newName.substringFromIndex(newName.startIndex.advancedBy(newName.characters.count - 3)) == ".md" ? newName : "\(newName).md"
-        let newDocumentURL: NSURL = self.useiCloud ? (self.iCloudRoot?.URLByAppendingPathComponent(newDestination))! : NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0].URLByAppendingPathComponent(newDestination)
+    func renameFileNamed(_ name: String, newName: String) {
+        let newDestination = newName.characters.count > 3 && newName.substring(from: newName.characters.index(newName.startIndex, offsetBy: newName.characters.count - 3)) == ".md" ? newName : "\(newName).md"
+        let newDocumentURL: URL = self.useiCloud ? (self.iCloudRoot?.appendingPathComponent(newDestination))! : FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(newDestination)
         for doc: MarkdownDocument in self.documents {
             if doc.fileURL.lastPathComponent == name {
                 do {
-                    try NSFileManager.defaultManager().moveItemAtURL(doc.fileURL, toURL: newDocumentURL)
+                    try FileManager.default.moveItem(at: doc.fileURL, to: newDocumentURL)
                     self.documents = []
                     let docNames: [String] = self.listAllDocuments()
                     for name: String in docNames {

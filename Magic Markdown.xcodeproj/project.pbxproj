@@ -29,6 +29,19 @@
 		D8AF49DE302689EA6B533E30 /* Pods_Magic_Markdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533B035AE62790B335D00443 /* Pods_Magic_Markdown.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		D0221B141E66836A008C6384 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "echo \"Markdown file added\"";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		D0DEA73A1CE1786500963AF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -221,6 +234,7 @@
 				3323C7029F3AC158726F65F2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
+				D0221B141E66836A008C6384 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -284,6 +298,7 @@
 					D0DEA7241CE1786400963AF6 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 26VT895967;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 1;
@@ -657,6 +672,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Magic Markdown-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -676,6 +692,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Magic Markdown-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

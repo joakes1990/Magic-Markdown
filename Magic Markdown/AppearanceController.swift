@@ -13,19 +13,19 @@ class AppearanceController: NSObject {
     class func setLightMode() {
         
         UIToolbar.appearance().tintColor = Constants.dayTimeTint
-        UITextView.appearance().backgroundColor = UIColor.whiteColor()
-        UITextField.appearance().backgroundColor = UIColor.whiteColor()
+        UITextView.appearance().backgroundColor = UIColor.white
+        UITextField.appearance().backgroundColor = UIColor.white
         UIToolbar.appearance().barTintColor = Constants.dayTimeBarColor
         UISwitch.appearance().onTintColor = Constants.dayTimeTint
-        UITableViewCell.appearance().backgroundColor = UIColor.whiteColor()
-        UITableView.appearance().backgroundColor = UIColor.whiteColor()
+        UITableViewCell.appearance().backgroundColor = UIColor.white
+        UITableView.appearance().backgroundColor = UIColor.white
         UINavigationBar.appearance().barTintColor = Constants.dayTimeBarColor
         UINavigationBar.appearance().tintColor = Constants.dayTimeTint
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.darkTextColor()], forState: .Disabled)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.darkText], for: .disabled)
     }
     class func setDarkMode() {
         UIToolbar.appearance().tintColor = Constants.nightTimeTintColor
-        UITextView.appearance().backgroundColor = UIColor.blackColor()
+        UITextView.appearance().backgroundColor = UIColor.black
 //        UITextField.appearance().backgroundColor = UIColor.blackColor()
         UIToolbar.appearance().barTintColor = Constants.nightTimeBarColor
         UISwitch.appearance().onTintColor = Constants.nightTimeTintColor

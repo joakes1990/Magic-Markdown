@@ -14,9 +14,9 @@ class OpenViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact {
-            let dismissButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(dismissViewController))
-            self.navigationItem.setRightBarButtonItem(dismissButton, animated: true)
+        if self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.compact {
+            let dismissButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
+            self.navigationItem.setRightBarButton(dismissButton, animated: true)
         }
     }
 
@@ -27,46 +27,46 @@ class OpenViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func dismissViewController() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: table view delegate methods
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.availableDocuments.count + 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("documentCell")!
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "documentCell")!
         
         if indexPath.row == 0 {
             cell.textLabel?.text = "+ Create New Document"
         } else{
             cell.textLabel?.text = availableDocuments[indexPath.row - 1]
         }
-        if NSUserDefaults.standardUserDefaults().boolForKey(Constants.useDarkmode) {
+        if UserDefaults.standard.bool(forKey: Constants.useDarkmode) {
             cell.textLabel?.textColor = Constants.dayTimeBarColor
         }
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectionIndex: Int = indexPath.row - 1
-        let parentView: ConmposeViewController = UIApplication.sharedApplication().keyWindow!.rootViewController as! ConmposeViewController
+        let parentView: ConmposeViewController = UIApplication.shared.keyWindow!.rootViewController as! ConmposeViewController
         
         if selectionIndex < 0 {
             parentView.composeView.setText("")
             DocumentManager.sharedInstance.currentOpenDocument = nil
             parentView.composeView.textViewDidChange(UITextView())
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         } else {
             let selectedFileName = availableDocuments[selectionIndex]
             DocumentManager.sharedInstance.openDocumentWithName(selectedFileName)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if indexPath.row > 0 {
             return true
         } else {
@@ -75,36 +75,36 @@ class OpenViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if indexPath.row > 0 {
-            let renameAction: UITableViewRowAction = UITableViewRowAction(style: .Normal, title: "Rename", handler: { (action, indexPath) in
-                let renameAlert: UIAlertController = UIAlertController(title: "Rename Document", message: "", preferredStyle: .Alert)
-                renameAlert.addTextFieldWithConfigurationHandler { (textField) in
+            let renameAction: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "Rename", handler: { (action, indexPath) in
+                let renameAlert: UIAlertController = UIAlertController(title: "Rename Document", message: "", preferredStyle: .alert)
+                renameAlert.addTextField { (textField) in
                     textField.placeholder = "New Name"
                 }
                 let newNameField = renameAlert.textFields![0]
-                let cancelAction: UIAlertAction = UIAlertAction(title: "cancel", style: .Cancel, handler: nil)
-                let renameAlertAction: UIAlertAction = UIAlertAction(title: "Rename", style: .Default, handler: { (action) in
+                let cancelAction: UIAlertAction = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+                let renameAlertAction: UIAlertAction = UIAlertAction(title: "Rename", style: .default, handler: { (action) in
                     if DocumentManager.sharedInstance.docNameAvailable("\(newNameField.text!).md") && DocumentManager.sharedInstance.docNameAvailable(newNameField.text!) {
                         DocumentManager.sharedInstance.renameFileNamed(self.availableDocuments[indexPath.row - 1], newName: newNameField.text!)
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
                     } else {
-                        let failedAlert: UIAlertController = UIAlertController(title: "Failed to Rename", message: "The name provided was not available.", preferredStyle: .Alert)
-                        let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                        let failedAlert: UIAlertController = UIAlertController(title: "Failed to Rename", message: "The name provided was not available.", preferredStyle: .alert)
+                        let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
                         failedAlert.addAction(okAction)
-                        self.presentViewController(failedAlert, animated: true, completion: nil)
+                        self.present(failedAlert, animated: true, completion: nil)
                     }
                 })
                 renameAlert.addAction(cancelAction)
                 renameAlert.addAction(renameAlertAction)
                 
-                self.presentViewController(renameAlert, animated: true, completion: nil)
+                self.present(renameAlert, animated: true, completion: nil)
             })
             
-            let deleteAction: UITableViewRowAction = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action, indexPath) in
+            let deleteAction: UITableViewRowAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
                 DocumentManager.sharedInstance.deleteDocumentWithName(self.availableDocuments[indexPath.row - 1])
-                self.availableDocuments.removeAtIndex(indexPath.row - 1)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                self.availableDocuments.remove(at: indexPath.row - 1)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
             })
             return [deleteAction, renameAction]
         } else {
