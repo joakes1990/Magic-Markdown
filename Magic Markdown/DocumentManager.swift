@@ -107,7 +107,10 @@ class DocumentManager: NSObject {
             } catch {
                 print("No documents found")
             }
-        
+        if let trashIndex = files.index(of: Constants.trash) {
+            files.remove(at: trashIndex)
+        }
+        files = self.removeExtention(files: files)
         self.documents = []
         for doc: String in files {
             self.documents.append(MarkdownDocument(fileURL: self.getDocURL(doc)))
@@ -146,6 +149,21 @@ class DocumentManager: NSObject {
             UserDefaults.standard.synchronize()
     }
     
+    func removeExtention(files: [String]) -> [String] {
+        var fileNames: [String] = []
+        for file: String in files {
+            let remote = file.substring(to: file.index(after: file.startIndex)) == "." && file.contains(Constants.iCloudExtention)
+            var fileName: String
+            if remote {
+                fileName = file.replacingOccurrences(of: Constants.iCloudExtention, with: "")
+                fileName.remove(at: file.startIndex)
+            } else {
+                fileName = file
+            }
+            fileNames.append(fileName)
+        }
+        return fileNames
+    }
     
     //MARK: saving
     

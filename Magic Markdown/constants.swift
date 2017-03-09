@@ -29,6 +29,10 @@ struct Constants {
     static let saveSuccessful = "saveSuccessful"
     static let documentsReady = "documentsReady"
     
+    //MARK: file names
+    static let trash = ".Trash"
+    static let iCloudExtention = ".icloud"
+    
     //MARK: Colors
     static let purpleColor: UIColor = UIColor(red: 0.686, green: 0.427, blue: 0.796, alpha: 1.00)
     static let redColor: UIColor = UIColor(red: 0.831, green: 0.196, blue: 0.122, alpha: 1.00)
