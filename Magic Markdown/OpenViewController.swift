@@ -58,6 +58,7 @@ class OpenViewController: UIViewController, UITableViewDelegate, UITableViewData
             parentView.composeView.setText("")
             DocumentManager.sharedInstance.currentOpenDocument = nil
             parentView.composeView.textViewDidChange(UITextView())
+            parentView.titleLabel.title = "Untitled Document"
             self.dismiss(animated: true, completion: nil)
         } else {
             let selectedFileName = availableDocuments[selectionIndex]
