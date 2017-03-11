@@ -38,7 +38,7 @@ class SettingsMenuViewController: UIViewController {
             self.saveOnExitSwitch.onTintColor = Constants.nightTimeTintColor
             self.darkmodeSwitch.onTintColor = Constants.nightTimeTintColor
         }
-        if self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.compact {
+        if UIDevice.current.userInterfaceIdiom == .phone {
             let dismissButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
             self.navigationItem.setRightBarButton(dismissButton, animated: true)
         }
