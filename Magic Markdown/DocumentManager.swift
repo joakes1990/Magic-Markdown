@@ -110,10 +110,15 @@ class DocumentManager: NSObject {
         if let trashIndex = files.index(of: Constants.trash) {
             files.remove(at: trashIndex)
         }
+        if let trashIndex = files.index(of: Constants.trashMD) {
+            files.remove(at: trashIndex)
+        }
         files = self.removeExtention(files: files)
         self.documents = []
         for doc: String in files {
-            self.documents.append(MarkdownDocument(fileURL: self.getDocURL(doc)))
+            if doc != Constants.trashMD {
+                self.documents.append(MarkdownDocument(fileURL: self.getDocURL(doc)))
+            }
         }
         let notification: Notification = Notification(name: Notification.Name(rawValue: Constants.documentsReady), object: nil)
         NotificationCenter.default.post(notification)

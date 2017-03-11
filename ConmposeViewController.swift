@@ -56,14 +56,14 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         
         self.composeView.addTextViewAccessoryView(toolbar)
         
-        DispatchQueue.global().async {
-            DocumentManager.sharedInstance.checkforiCloud()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.titleLabel.title = DocumentManager.sharedInstance.currentOpenDocument != nil ? DocumentManager.sharedInstance.currentOpenDocument!.fileURL.lastPathComponent : "Untitled Document"
         self.setBarColor()
+        DispatchQueue.global().async {
+            DocumentManager.sharedInstance.checkforiCloud()
+        }
     }
     
     func openDoc() {

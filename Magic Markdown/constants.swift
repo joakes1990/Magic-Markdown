@@ -31,6 +31,7 @@ struct Constants {
     
     //MARK: file names
     static let trash = ".Trash"
+    static let trashMD = "..Trash.md"
     static let iCloudExtention = ".icloud"
     
     //MARK: Colors
