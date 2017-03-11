@@ -33,6 +33,5 @@ class AppearanceController: NSObject {
         UITableView.appearance().backgroundColor = Constants.nightTimeBarColor
         UINavigationBar.appearance().barTintColor = Constants.nightTimeBarColor
         UINavigationBar.appearance().tintColor = Constants.nightTimeTintColor
-        
     }
 }

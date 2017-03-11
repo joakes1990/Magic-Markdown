@@ -82,6 +82,7 @@ class SettingsMenuViewController: UIViewController {
             self.fontLabel.textColor = Constants.dayTimeBarColor
             self.autoSaveLabel.textColor = Constants.dayTimeBarColor
             self.darkModeLabel.textColor = Constants.dayTimeBarColor
+            (self.navigationController as! DayNightPopoverController).toggleDarkMode(on: true)
             
         } else {
             weak var parentView: ConmposeViewController? = UIApplication.shared.keyWindow!.rootViewController as? ConmposeViewController
@@ -97,6 +98,7 @@ class SettingsMenuViewController: UIViewController {
             self.fontLabel.textColor = UIColor.black
             self.autoSaveLabel.textColor = UIColor.black
             self.darkModeLabel.textColor = UIColor.black
+            (self.navigationController as! DayNightPopoverController).toggleDarkMode(on: false)
         }
     }
     

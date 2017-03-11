@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		239C4A97662E647A6EE1868C /* Pods_Magic_MarkdownUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14A84E890BDBA24ECB27D7D /* Pods_Magic_MarkdownUITests.framework */; };
 		9BA298EA96E4A3C9BB48BA12 /* Pods_Magic_MarkdownTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE0D83239A25EEF6328213D /* Pods_Magic_MarkdownTests.framework */; };
+		D0013AC31E749D3E00A50B80 /* DayNightPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0013AC21E749D3E00A50B80 /* DayNightPopoverController.swift */; };
 		D026AAA31D048C8400D6E7C6 /* OpenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D026AAA21D048C8400D6E7C6 /* OpenViewController.swift */; };
 		D0420FC31D011BF800C19560 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0420FC21D011BF800C19560 /* constants.swift */; };
 		D0420FC71D011D6D00C19560 /* firstRun.md in Resources */ = {isa = PBXBuildFile; fileRef = D0420FC51D011D3500C19560 /* firstRun.md */; };
@@ -64,6 +65,7 @@
 		A28A79C1111955217030AA94 /* Pods-Magic MarkdownTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic MarkdownTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Magic MarkdownTests/Pods-Magic MarkdownTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AB430533FEF9E6CA272692F7 /* Pods-Magic MarkdownTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic MarkdownTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Magic MarkdownTests/Pods-Magic MarkdownTests.release.xcconfig"; sourceTree = "<group>"; };
 		BA2611BFE1341A03DDB5C8DB /* Pods-Magic MarkdownUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic MarkdownUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Magic MarkdownUITests/Pods-Magic MarkdownUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D0013AC21E749D3E00A50B80 /* DayNightPopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayNightPopoverController.swift; sourceTree = "<group>"; };
 		D026AAA21D048C8400D6E7C6 /* OpenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenViewController.swift; sourceTree = "<group>"; };
 		D0420FC21D011BF800C19560 /* constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		D0420FC51D011D3500C19560 /* firstRun.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = firstRun.md; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				D0DEA7341CE1786400963AF6 /* Info.plist */,
 				D0420FC21D011BF800C19560 /* constants.swift */,
 				D09FDAFE1D28141700CE154F /* AppearanceController.swift */,
+				D0013AC21E749D3E00A50B80 /* DayNightPopoverController.swift */,
 			);
 			path = "Magic Markdown";
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				D0DD7EA61CEAAEEC00058359 /* ConmposeViewController.swift in Sources */,
 				D0C25F611CFBE74600E9F2E9 /* MenuViewController.swift in Sources */,
 				D0A11F861D2082470082A866 /* SettingsMenuViewController.swift in Sources */,
+				D0013AC31E749D3E00A50B80 /* DayNightPopoverController.swift in Sources */,
 				D0DEA7291CE1786400963AF6 /* AppDelegate.swift in Sources */,
 				D026AAA31D048C8400D6E7C6 /* OpenViewController.swift in Sources */,
 				D0EA6E2C1D038BD60073B9C6 /* DocumentManager.swift in Sources */,

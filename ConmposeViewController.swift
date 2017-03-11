@@ -365,7 +365,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
     
     @IBAction func shareOpenDocument(_ sender: AnyObject) {
         if DocumentManager.sharedInstance.currentOpenDocument == nil {
-            let alert: UIAlertController = UIAlertController(title: "No Document Open", message: "No Document is currently open. Please save this one or open an existing one to share whith the share sheet", preferredStyle: .alert)
+            let alert: UIAlertController = UIAlertController(title: "No Document Open", message: "No Document is currently open. Please save this one or open an existing one to share with the share sheet", preferredStyle: .alert)
             let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
             alert.addAction(okAction)
             self.present(alert, animated: true, completion: nil)
