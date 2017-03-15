@@ -145,6 +145,7 @@ class DocumentManager: NSObject {
                     if parentView != nil {
                         parentView!.composeView.setText(stringData!)
                         parentView?.titleLabel.title = name
+                        parentView?.refreshComposeView()
                     }
                 })
             })

@@ -10,7 +10,7 @@ import UIKit
 import OKSGutteredCodeView
 import SafariServices
 
-class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDelegate {
+class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDelegate, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var composeView: OKSGutteredCodeView!
     @IBOutlet weak var previewWebView: UIWebView!
@@ -376,6 +376,23 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
             self.present(actionView, animated: true, completion: nil)
         }
     }
+    //MARK: popover delegate methods
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.menuSegue {
+            if let destinationPopover: UIPopoverPresentationController = (segue.destination as! DayNightPopoverController).popoverPresentationController {
+                destinationPopover.delegate = self
+            }
+            
+        }
+    }
     
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        self.refreshComposeView()
+    }
     
+    func refreshComposeView() {
+        let tempTextView = UITextView(frame: self.composeView.frame)
+        tempTextView.text = self.composeView.getText()
+        self.composeView.textViewDidChange(tempTextView)
+    }
 }
