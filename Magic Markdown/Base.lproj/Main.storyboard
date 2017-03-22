@@ -39,7 +39,9 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="HOl-jR-6FJ"/>
                                     <barButtonItem systemItem="action" id="OIR-w9-F73">
                                         <connections>
-                                            <action selector="shareOpenDocument:" destination="BYZ-38-t0r" id="mjl-oh-67e"/>
+                                            <segue destination="F8K-xV-KPN" kind="popoverPresentation" popoverAnchorBarButtonItem="OIR-w9-F73" id="Tat-nX-PHm">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem image="preview" id="UBP-zs-0LJ">
@@ -93,6 +95,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="324" y="298"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wde-5a-Fvg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F8K-xV-KPN" sceneMemberID="viewController">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="320"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9JC-oW-MtQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dwg-hh-zMG" kind="relationship" relationship="rootViewController" id="v5T-Bp-WJM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uQK-ln-sUT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="986" y="298"/>
+        </scene>
+        <!--Export Document-->
+        <scene sceneID="Kk7-LA-09n">
+            <objects>
+                <viewController id="dwg-hh-zMG" customClass="ExportViewController" customModule="Magic_Markdown" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dQm-y5-l57"/>
+                        <viewControllerLayoutGuide type="bottom" id="u7J-4k-6bP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MZM-cs-020">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zdp-pV-huR">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="exportCell" id="Hd3-9S-DRl">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hd3-9S-DRl" id="Upq-T7-ho7">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="dwg-hh-zMG" id="man-T5-A8m"/>
+                                    <outlet property="delegate" destination="dwg-hh-zMG" id="znn-Ps-70V"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zdp-pV-huR" firstAttribute="top" secondItem="MZM-cs-020" secondAttribute="top" id="Gcg-pm-yiC"/>
+                            <constraint firstItem="zdp-pV-huR" firstAttribute="leading" secondItem="MZM-cs-020" secondAttribute="leading" id="QJc-UH-sUE"/>
+                            <constraint firstAttribute="trailing" secondItem="zdp-pV-huR" secondAttribute="trailing" id="YgI-L0-BFw"/>
+                            <constraint firstItem="u7J-4k-6bP" firstAttribute="top" secondItem="zdp-pV-huR" secondAttribute="bottom" id="sPd-fy-bQF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Export Document" id="cIp-fR-xDz"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="320"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kda-7R-mtc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1513.28125" y="297.65625"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="WB5-5N-ZSB">

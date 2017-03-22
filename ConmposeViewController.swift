@@ -361,21 +361,6 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         self.composeView.setAttributedText(attributedText)
     }
     
-    //MARK: sharing
-    
-    @IBAction func shareOpenDocument(_ sender: AnyObject) {
-        if DocumentManager.sharedInstance.currentOpenDocument == nil {
-            let alert: UIAlertController = UIAlertController(title: "No Document Open", message: "No Document is currently open. Please save this one or open an existing one to share with the share sheet", preferredStyle: .alert)
-            let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alert.addAction(okAction)
-            self.present(alert, animated: true, completion: nil)
-        } else {
-            let activityItems: [URL] = [(DocumentManager.sharedInstance.currentOpenDocument?.fileURL)!]
-            let actionView: UIActivityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-            actionView.popoverPresentationController?.barButtonItem = self.actionButton
-            self.present(actionView, animated: true, completion: nil)
-        }
-    }
     //MARK: popover delegate methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.menuSegue {

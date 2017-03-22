@@ -15,6 +15,7 @@
 		D0420FC71D011D6D00C19560 /* firstRun.md in Resources */ = {isa = PBXBuildFile; fileRef = D0420FC51D011D3500C19560 /* firstRun.md */; };
 		D09FDAFF1D28141700CE154F /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09FDAFE1D28141700CE154F /* AppearanceController.swift */; };
 		D0A11F861D2082470082A866 /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A11F851D2082470082A866 /* SettingsMenuViewController.swift */; };
+		D0AC8F8C1E8213A800989729 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AC8F8B1E8213A800989729 /* ExportViewController.swift */; };
 		D0C25F611CFBE74600E9F2E9 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C25F601CFBE74600E9F2E9 /* MenuViewController.swift */; };
 		D0C25F641CFBEF5D00E9F2E9 /* Hack-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0C25F621CFBEE0100E9F2E9 /* Hack-Regular.ttf */; };
 		D0DD7EA61CEAAEEC00058359 /* ConmposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DD7EA51CEAAEEC00058359 /* ConmposeViewController.swift */; };
@@ -71,6 +72,7 @@
 		D0420FC51D011D3500C19560 /* firstRun.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = firstRun.md; sourceTree = "<group>"; };
 		D09FDAFE1D28141700CE154F /* AppearanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceController.swift; sourceTree = "<group>"; };
 		D0A11F851D2082470082A866 /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; };
+		D0AC8F8B1E8213A800989729 /* ExportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		D0BED23F1CFA6205004155D3 /* Magic Markdown-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Magic Markdown-Bridging-Header.h"; sourceTree = "<group>"; };
 		D0C25F601CFBE74600E9F2E9 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D0C25F621CFBEE0100E9F2E9 /* Hack-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Hack-Regular.ttf"; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				D0420FC21D011BF800C19560 /* constants.swift */,
 				D09FDAFE1D28141700CE154F /* AppearanceController.swift */,
 				D0013AC21E749D3E00A50B80 /* DayNightPopoverController.swift */,
+				D0AC8F8B1E8213A800989729 /* ExportViewController.swift */,
 			);
 			path = "Magic Markdown";
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				D0DD7EA61CEAAEEC00058359 /* ConmposeViewController.swift in Sources */,
 				D0C25F611CFBE74600E9F2E9 /* MenuViewController.swift in Sources */,
 				D0A11F861D2082470082A866 /* SettingsMenuViewController.swift in Sources */,
+				D0AC8F8C1E8213A800989729 /* ExportViewController.swift in Sources */,
 				D0013AC31E749D3E00A50B80 /* DayNightPopoverController.swift in Sources */,
 				D0DEA7291CE1786400963AF6 /* AppDelegate.swift in Sources */,
 				D026AAA31D048C8400D6E7C6 /* OpenViewController.swift in Sources */,
