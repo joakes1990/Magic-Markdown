@@ -66,7 +66,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         }
     }
     
-    func openDoc() {
+    @objc func openDoc() {
         if DocumentManager.previousDocumentAvailable() {
             DocumentManager.sharedInstance.openDocumentWithName(UserDefaults.standard.string(forKey: Constants.previouslyOpenDocument)!)
         }
@@ -100,12 +100,12 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         }
     }
 
-    func rotatePreview() {
+    @objc func rotatePreview() {
         self.previewWidth.constant = self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.compact ? self.view.bounds.width : self.view.bounds.width / 2
 
     }
     
-    func saveSuccess() {
+    @objc func saveSuccess() {
         self.view.makeToast("Save Successful")
     }
     
@@ -133,11 +133,11 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
     
 //MARK: insertion methods
     
-    func addQuote() {
+    @objc func addQuote() {
         self.composeView.insertTextAtCurser(">")
     }
     
-    func addLink() {
+    @objc func addLink() {
         let alertView: UIAlertController = UIAlertController(title: "New Link", message: nil, preferredStyle: .alert)
         
         alertView.addTextField { (textfield) in
@@ -167,7 +167,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         }
     }
     
-    func addImage() {
+    @objc func addImage() {
         let alertView: UIAlertController = UIAlertController(title: "New Image", message: nil, preferredStyle: .alert)
         
         alertView.addTextField { (textfield) in
@@ -197,7 +197,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         }
     }
     
-    func addCodeBlock() {
+    @objc func addCodeBlock() {
         self.composeView.insertTextAtCurser("    ")
     }
     
@@ -233,7 +233,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         }) 
     }
     
-    func askForiCloud() {
+    @objc func askForiCloud() {
         let alert: UIAlertController = UIAlertController(title: "Use iCloud?", message: "iCloud makes it easy to sync your documents with other devices", preferredStyle: .alert)
         let whyNotAction: UIAlertAction = UIAlertAction(title: "Why not", style: .default) { (action) in
             UserDefaults.standard.set(true, forKey: Constants.useiCloud)
@@ -280,7 +280,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
             ]
     }
     
-    func save() {
+    @objc func save() {
         if DocumentManager.sharedInstance.currentOpenDocument != nil {
             let parentView: ConmposeViewController = UIApplication.shared.keyWindow!.rootViewController as! ConmposeViewController
             let text: String = parentView.composeView.getText()
@@ -317,11 +317,11 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         }
     }
     
-    func open() {
+    @objc func open() {
         self.performSegue(withIdentifier: Constants.menuSegue, sender: self)
     }
     
-    func increaseFont() {
+    @objc func increaseFont() {
         let fontSize: CGFloat = (self.composeView.getFont()?.pointSize)! + 1.0
         self.composeView.setfont(UIFont(name: "Hack", size: fontSize)!)
         UserDefaults.standard.set(Double(fontSize), forKey: Constants.fontSize)
@@ -329,7 +329,7 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
         
     }
     
-    func decreaseFont() {
+    @objc func decreaseFont() {
         let fontSize: CGFloat = (self.composeView.getFont()?.pointSize)! - 1.0
         self.composeView.setfont(UIFont(name: "Hack", size: fontSize)!)
         UserDefaults.standard.set(Double(fontSize), forKey: Constants.fontSize)
@@ -339,23 +339,23 @@ class ConmposeViewController: UIViewController, CodeViewDelegate, UIWebViewDeleg
     //MARK: highlighting methods
     
     func highlightText() {
-        let attributes = ["#" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.purpleColor],
-                          "=" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.redColor],
-                          "_" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.redColor],
-                          "*" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.greenColor],
-                          "!" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.blueColor],
-                          "[" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.blueColor],
-                          "]" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.blueColor],
-                          "(" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.blueColor],
-                          ")" : [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName: Constants.blueColor]]
+        let attributes = ["#" : [NSAttributedStringKey.font : self.composeView.getFont()!, NSAttributedStringKey.foregroundColor: Constants.purpleColor],
+                          "=" : [NSAttributedStringKey.font : self.composeView.getFont()!, NSAttributedStringKey.foregroundColor: Constants.redColor],
+                          "_" : [NSAttributedStringKey.font : self.composeView.getFont()!, NSAttributedStringKey.foregroundColor: Constants.redColor],
+                          "*" : [NSAttributedStringKey.font : self.composeView.getFont()!, NSAttributedStringKey.foregroundColor: Constants.greenColor],
+                          "!" : [NSAttributedStringKey.font : self.composeView.getFont()!, NSAttributedStringKey.foregroundColor: Constants.blueColor],
+                          "[" : [NSAttributedStringKey.font : self.composeView.getFont()!, NSAttributedStringKey.foregroundColor: Constants.blueColor],
+                          "]" : [NSAttributedStringKey.font : self.composeView.getFont()!, NSAttributedStringKey.foregroundColor: Constants.blueColor],
+                          "(" : [NSAttributedStringKey.font : self.composeView.getFont()!, NSAttributedStringKey.foregroundColor: Constants.blueColor],
+                          ")" : [NSAttributedStringKey.font : self.composeView.getFont()!, NSAttributedStringKey.foregroundColor: Constants.blueColor]]
         let text: String = self.composeView.getText()
         let attributedText : NSMutableAttributedString = NSMutableAttributedString()
-        for char in text.characters {
+        for char in text {
             let charString = String(char)
             if attributes[charString] != nil {
-                attributedText.append(NSMutableAttributedString(string: charString, attributes: (attributes[charString]! as [String : NSObject])))
+                attributedText.append(NSMutableAttributedString(string: charString, attributes: (attributes[charString]!)))
             } else {
-                attributedText.append(NSAttributedString(string: charString, attributes: [NSFontAttributeName : self.composeView.getFont()!, NSForegroundColorAttributeName : UserDefaults.standard.bool(forKey: Constants.useDarkmode) ? Constants.dayTimeBarColor : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)]))
+                attributedText.append(NSAttributedString(string: charString, attributes: [NSAttributedStringKey.font : self.composeView.getFont()!, NSAttributedStringKey.foregroundColor : UserDefaults.standard.bool(forKey: Constants.useDarkmode) ? Constants.dayTimeBarColor : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)]))
             }
         }
         self.composeView.setAttributedText(attributedText)

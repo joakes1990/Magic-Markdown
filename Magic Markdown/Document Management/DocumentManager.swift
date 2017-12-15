@@ -86,9 +86,9 @@ class DocumentManager: NSObject {
     
     func getDocURL(_ name: String) -> URL {
         if self.useiCloud {
-            return name.characters.count > 3 && name.substring(from: name.characters.index(name.startIndex, offsetBy: name.characters.count - 3)) == ".md" ? self.iCloudRoot!.appendingPathComponent(name) : self.iCloudRoot!.appendingPathComponent("\(name).md")
+            return name.count > 3 && name.substring(from: name.index(name.startIndex, offsetBy: name.count - 3)) == ".md" ? self.iCloudRoot!.appendingPathComponent(name) : self.iCloudRoot!.appendingPathComponent("\(name).md")
         } else {
-            return name.characters.count > 3 && name.substring(from: name.characters.index(name.startIndex, offsetBy: name.characters.count - 3)) == ".md" ? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(name) : FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(name).appendingPathExtension("md")
+            return name.count > 3 && name.substring(from: name.characters.index(name.startIndex, offsetBy: name.characters.count - 3)) == ".md" ? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(name) : FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(name).appendingPathExtension("md")
         }
     }
     
@@ -236,7 +236,7 @@ class DocumentManager: NSObject {
     //MARK: renameing
     
     func renameFileNamed(_ name: String, newName: String) {
-        let newDestination = newName.characters.count > 3 && newName.substring(from: newName.characters.index(newName.startIndex, offsetBy: newName.characters.count - 3)) == ".md" ? newName : "\(newName).md"
+        let newDestination = newName.count > 3 && newName.substring(from: newName.characters.index(newName.startIndex, offsetBy: newName.characters.count - 3)) == ".md" ? newName : "\(newName).md"
         let newDocumentURL: URL = self.useiCloud ? (self.iCloudRoot?.appendingPathComponent(newDestination))! : FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(newDestination)
         for doc: MarkdownDocument in self.documents {
             if doc.fileURL.lastPathComponent == name {

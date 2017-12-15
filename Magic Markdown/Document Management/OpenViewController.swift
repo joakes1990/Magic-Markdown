@@ -26,7 +26,7 @@ class OpenViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    func dismissViewController() {
+    @objc func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -111,7 +111,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.present(sfVC, animated: true, completion: nil)
     }
     
-    func dismissViewController() {
+    @objc func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
     }
     

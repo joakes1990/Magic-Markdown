@@ -9,14 +9,4 @@ target 'Magic Markdown' do
  pod 'OKSGutteredCodeView', '~> 0.3'
  pod 'MMMarkdown', '~> 0.5'
  pod 'Toast', '~> 3.0' 
-target 'Magic MarkdownTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'Magic MarkdownUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end
